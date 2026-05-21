@@ -1,0 +1,2540 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apotheke am Römer & Nahe-Apotheke</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#C0392B;--red-dark:#96281B;--red-light:#E74C3C;
+  --grey:#2C2C2C;--grey-mid:#555;--grey-light:#888;--grey-bg:#F5F5F5;--grey-border:#E0E0E0;
+  --white:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;color:var(--grey);background:var(--white);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--grey);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.nav-logo img{height:36px;object-fit:contain;filter:invert(1) hue-rotate(180deg);mix-blend-mode:screen}
+.nav-logo span{color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:.5px}
+.nav-links{display:flex;align-items:center;gap:1.8rem}
+.nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.nav-phone{background:var(--red);color:var(--white);padding:.35rem .75rem;border-radius:4px;font-size:.8rem;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:background .2s}
+.nav-phone:hover{background:var(--red-dark)}
+.nav-wa{background:#25D366;color:var(--white);padding:.35rem .75rem;border-radius:4px;font-size:.8rem;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:background .2s}
+.nav-wa:hover{background:#1da851}
+.nav-gear{color:rgba(255,255,255,.15);background:none;border:none;cursor:pointer;font-size:1.1rem;padding:.4rem;transition:color .2s}
+.nav-gear:hover{color:rgba(255,255,255,.6)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:.3s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--grey);z-index:999;padding:1rem 0;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;color:rgba(255,255,255,.85);text-decoration:none;padding:.75rem 2rem;font-size:.9rem;font-weight:500;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid rgba(255,255,255,.05)}
+.mobile-menu a:last-child{color:rgba(255,255,255,.4);font-size:.8rem}
+
+/* ── PAGES ── */
+.page{display:none;padding-top:64px}
+.page.active{display:block}
+
+/* ── HOME ── */
+.hero{display:flex;flex-direction:column;background:var(--grey)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 4rem 3rem}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--red);color:var(--white);font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:.35rem .9rem;border-radius:2px;margin-bottom:1.5rem}
+.hero-badge::before{content:'';width:7px;height:7px;background:var(--white);border-radius:50%;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,5vw,4.2rem);font-weight:800;color:var(--white);line-height:1.05;margin-bottom:1.25rem;letter-spacing:-.5px}
+.hero h1 span{color:var(--red-light)}
+.hero-sub{color:rgba(255,255,255,.65);font-size:1rem;line-height:1.7;max-width:420px;margin-bottom:2rem}
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.6rem;font-family:'Barlow',sans-serif;font-size:.875rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;text-decoration:none;border-radius:3px}
+.btn-primary{background:var(--red);color:var(--white)}
+.btn-primary:hover{background:var(--red-dark)}
+.btn-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.6)}
+.hero-right{position:relative;overflow:hidden}
+.hero-right img{width:100%;height:auto;display:block;object-fit:contain}
+.hero-info{display:grid;grid-template-columns:repeat(3,1fr);background:var(--red);padding:1.2rem 4rem;gap:1rem}
+.info-item{text-align:center;color:var(--white)}
+.info-item strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:.5px}
+.info-item span{font-size:.78rem;opacity:.8;text-transform:uppercase;letter-spacing:.5px}
+
+/* ── SECTIONS ── */
+section{padding:5rem 4rem}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;color:var(--grey);line-height:1.1;margin-bottom:1rem}
+.section-sub{color:var(--grey-light);font-size:.95rem;line-height:1.7;max-width:560px;margin-bottom:3rem}
+
+/* Leistungen */
+.leistungen{background:var(--grey-bg)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.card{background:var(--white);border-radius:4px;padding:2rem;border-left:3px solid var(--red);box-shadow:0 1px 8px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.card-icon{font-size:1.8rem;margin-bottom:1rem}
+.card h3{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:.6rem;color:var(--grey)}
+.card p{font-size:.875rem;color:var(--grey-light);line-height:1.65}
+
+/* Standorte */
+.standorte-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.standort-card{border-radius:4px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.1);cursor:pointer;transition:transform .2s}
+.standort-card:hover{transform:translateY(-4px)}
+.standort-img{height:260px;overflow:hidden;background:#e8e8e8}
+.standort-img img{width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .4s}
+.standort-card:hover .standort-img img{transform:scale(1.02)}
+.standort-body{padding:1.75rem;background:var(--white)}
+.standort-body h3{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--grey);margin-bottom:.4rem}
+.standort-body address{font-style:normal;font-size:.875rem;color:var(--grey-light);margin-bottom:1.25rem;line-height:1.6;display:flex;align-items:flex-start;gap:.4rem}
+.standort-body address::before{content:'📍';font-size:.9rem;margin-top:.05rem;flex-shrink:0}
+.hours-table{width:100%;font-size:.82rem;border-collapse:collapse;margin-bottom:0}
+.hours-table tr{border-bottom:1px solid var(--grey-border)}
+.hours-table tr:last-child{border-bottom:none}
+.hours-table td{padding:.45rem 0;color:var(--grey-mid)}
+.hours-table td:last-child{text-align:right;font-weight:600;color:var(--grey)}
+
+/* Rezept CTA */
+.rezept-cta{background:var(--grey);display:flex;align-items:center;justify-content:space-between;padding:4rem;gap:2rem;flex-wrap:wrap}
+.rezept-cta h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:800;color:var(--white);line-height:1.1}
+.rezept-cta p{color:rgba(255,255,255,.6);font-size:.9rem;margin-top:.5rem}
+
+/* Kontakt */
+.kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.kontakt-item{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
+.kontakt-icon{width:40px;height:40px;background:var(--red);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.1rem;flex-shrink:0}
+.kontakt-item h4{font-weight:600;font-size:.9rem;margin-bottom:.2rem}
+.kontakt-item p,.kontakt-item a{font-size:.875rem;color:var(--grey-light);text-decoration:none}
+.kontakt-item a:hover{color:var(--red)}
+.map-placeholder{background:var(--grey-bg);border-radius:4px;overflow:hidden;height:300px;display:flex;align-items:center;justify-content:center}
+.map-placeholder a{color:var(--red);text-decoration:none;font-weight:600;font-size:.9rem}
+
+/* Footer */
+footer{background:var(--grey);color:rgba(255,255,255,.5);padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.8rem}
+footer a{color:rgba(255,255,255,.4);text-decoration:none}
+footer a:hover{color:var(--white)}
+footer .footer-links{display:flex;gap:1.5rem}
+
+/* ── GESCHICHTE ── */
+.gs-hero{background:var(--grey);padding:5rem 4rem 3rem;color:var(--white)}
+.gs-hero .section-label{color:rgba(255,255,255,.5)}
+.gs-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:800;line-height:1.1}
+.gs-sticky{position:sticky;top:64px;z-index:100;background:var(--grey);padding:.75rem 4rem;display:flex;gap:2rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.gs-sticky a{color:rgba(255,255,255,.45);font-size:.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;padding:.4rem 0;border-bottom:2px solid transparent;transition:all .2s}
+.gs-sticky a.active,.gs-sticky a:hover{color:var(--white);border-bottom-color:var(--red)}
+.gs-content{padding:0 4rem 5rem}
+.gs-entry{display:grid;grid-template-columns:120px 1fr;gap:3rem;padding:4rem 0;border-bottom:1px solid var(--grey-border)}
+.gs-entry:last-child{border-bottom:none}
+.gs-year{font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:800;color:var(--red);line-height:1;position:sticky;top:120px;align-self:start}
+.gs-body h2{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800;color:var(--grey);margin-bottom:.75rem}
+.gs-body p{font-size:.95rem;color:var(--grey-mid);line-height:1.75;max-width:620px;margin-bottom:1.5rem}
+.gs-imgs{display:flex;gap:1rem;flex-wrap:wrap}
+.gs-imgs img{height:200px;width:auto;max-width:280px;object-fit:cover;border-radius:3px}
+.gs-heute{background:var(--red);color:var(--white);padding:4rem;border-radius:4px;margin-top:2rem}
+.gs-heute h2{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:800;margin-bottom:1rem}
+.gs-heute p{opacity:.85;line-height:1.7;margin-bottom:1.5rem}
+.heute-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1.5rem}
+.heute-item{background:rgba(0,0,0,.15);border-radius:3px;padding:1rem;text-align:center}
+.heute-item .icon{font-size:1.5rem;margin-bottom:.4rem}
+.heute-item p{font-size:.8rem;opacity:.85;line-height:1.4}
+
+/* ── TEAM ── */
+.team-hero{background:var(--grey);padding:5rem 4rem 3rem}
+.team-hero .section-label{color:rgba(255,255,255,.5)}
+.team-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:800;color:var(--white);line-height:1.1}
+.team-section{padding:3rem 4rem}
+.team-section+.team-section{padding-top:0}
+.team-group-title{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:var(--grey);text-transform:uppercase;letter-spacing:1px;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:2px solid var(--red);display:inline-block}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.5rem}
+.team-card{text-align:center}
+.team-card img{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto .75rem;display:block;border:3px solid var(--grey-bg);transition:border-color .2s}
+.team-card:hover img{border-color:var(--red)}
+.team-card h4{font-size:.875rem;font-weight:600;color:var(--grey);margin-bottom:.2rem}
+.team-card p{font-size:.75rem;color:var(--grey-light)}
+.team-group-backoffice{display:grid;grid-template-columns:repeat(3,160px);gap:1.5rem}
+
+/* ── REZEPT ── */
+.rz-wrap{max-width:680px;margin:0 auto;padding:4rem 2rem}
+.rz-header{text-align:center;margin-bottom:3rem}
+.rz-steps{display:flex;justify-content:center;gap:0;margin-bottom:3rem}
+.rz-step{display:flex;align-items:center;gap:.4rem}
+.rz-step-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;background:var(--grey-bg);color:var(--grey-light);transition:.3s}
+.rz-step-num.active{background:var(--red);color:var(--white)}
+.rz-step-num.done{background:var(--grey);color:var(--white)}
+.rz-step-label{font-size:.72rem;color:var(--grey-light);text-transform:uppercase;letter-spacing:.5px;display:none}
+.rz-step-line{flex:1;height:2px;background:var(--grey-bg);min-width:32px;transition:.3s}
+.rz-step-line.done{background:var(--grey)}
+.rz-panel{display:none}
+.rz-panel.active{display:block}
+.rz-panel h2{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800;color:var(--grey);margin-bottom:.5rem}
+.rz-panel p{font-size:.9rem;color:var(--grey-light);line-height:1.65;margin-bottom:1.5rem}
+.rz-check{display:flex;gap:.75rem;align-items:flex-start;padding:1.25rem;background:var(--grey-bg);border-radius:4px;margin-bottom:1.5rem;cursor:pointer}
+.rz-check input{margin-top:.2rem;accent-color:var(--red)}
+.rz-check label{font-size:.875rem;line-height:1.6;cursor:pointer}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.method-card{border:2px solid var(--grey-border);border-radius:4px;padding:1.25rem;cursor:pointer;text-align:center;transition:all .2s}
+.method-card:hover,.method-card.selected{border-color:var(--red);background:rgba(192,57,43,.04)}
+.method-card .m-icon{font-size:1.8rem;margin-bottom:.5rem}
+.method-card h4{font-size:.875rem;font-weight:600;margin-bottom:.2rem}
+.method-card p{font-size:.75rem;color:var(--grey-light)}
+.upload-area{border:2px dashed var(--grey-border);border-radius:4px;padding:2.5rem;text-align:center;margin-bottom:1.5rem;cursor:pointer;transition:.2s}
+.upload-area:hover{border-color:var(--red);background:rgba(192,57,43,.03)}
+.upload-area input{display:none}
+.upload-area .u-icon{font-size:2rem;color:var(--grey-light);margin-bottom:.75rem}
+.upload-area p{font-size:.875rem;color:var(--grey-light)}
+.upload-preview{max-width:100%;border-radius:4px;margin-bottom:1rem}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:.8rem;font-weight:600;color:var(--grey-mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.7rem 1rem;border:1.5px solid var(--grey-border);border-radius:3px;font-family:'Barlow',sans-serif;font-size:.9rem;color:var(--grey);transition:.2s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--red)}
+.form-group textarea{resize:vertical;min-height:80px}
+.rz-nav{display:flex;justify-content:space-between;margin-top:2rem;gap:1rem}
+.success-box{text-align:center;padding:3rem 1rem}
+.success-icon{font-size:3rem;margin-bottom:1rem}
+.success-box h2{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:800;color:var(--grey);margin-bottom:.75rem}
+.success-box p{font-size:.9rem;color:var(--grey-light);line-height:1.7;max-width:400px;margin:0 auto 2rem}
+
+/* ── ADMIN ── */
+.admin-login{max-width:360px;margin:6rem auto;padding:2.5rem;background:var(--white);border-radius:4px;box-shadow:0 4px 24px rgba(0,0,0,.1)}
+.admin-login h2{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800;text-align:center;margin-bottom.5rem;color:var(--grey)}
+.admin-login p{text-align:center;font-size:.8rem;color:var(--grey-light);margin-bottom:1.5rem}
+.admin-login .form-group input{background:var(--grey-bg)}
+.login-err{color:var(--red);font-size:.8rem;text-align:center;margin-bottom:1rem;display:none}
+.admin-dash{padding:2rem 3rem}
+.admin-tabs{display:flex;gap:0;border-bottom:2px solid var(--grey-border);margin-bottom:2rem;flex-wrap:wrap}
+.admin-tab{padding:.6rem 1.2rem;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;color:var(--grey-light);border-bottom:2px solid transparent;margin-bottom:-2px;background:none;border-top:none;border-left:none;border-right:none;transition:.2s}
+.admin-tab.active{color:var(--red);border-bottom-color:var(--red)}
+.admin-panel{display:none}
+.admin-panel.active{display:block}
+.ai-form{background:var(--grey-bg);border-radius:4px;padding:1.5rem;margin-bottom:1.5rem}
+.ai-form .form-group label{color:var(--grey-mid)}
+.ai-output{background:var(--white);border:1.5px solid var(--grey-border);border-radius:4px;padding:1.5rem;min-height:120px;font-size:.9rem;line-height:1.7;white-space:pre-wrap;color:var(--grey)}
+.copy-btn{margin-top:.75rem;font-size:.78rem}
+.nd-day{background:var(--white);border:1.5px solid var(--grey-border);border-radius:4px;padding:1rem;margin-bottom:.75rem}
+.nd-day h4{font-size:.8rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem}
+.nd-day .form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem}
+.nd-day .form-row input{padding:.5rem .75rem;font-size:.85rem}
+.canvas-wrap{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
+.canvas-wrap canvas{border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.1);max-width:300px;width:100%;height:auto}
+.dl-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:.5rem;font-size:.75rem}
+.api-key-wrap{background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.2);border-radius:4px;padding:1rem;margin-bottom:1.5rem;font-size:.82rem;color:var(--grey-mid)}
+.api-key-wrap a{color:var(--red)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  section{padding:3.5rem 1.5rem}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:3rem 1.5rem}
+  .hero-right{height:280px}
+  .hero-right::after{background:linear-gradient(180deg,var(--grey) 0%,transparent 40%)}
+  .hero-info{grid-template-columns:1fr 1fr;padding:1rem 1.5rem}
+  .standorte-grid{grid-template-columns:1fr}
+  .kontakt-grid{grid-template-columns:1fr}
+  .gs-hero,.gs-content{padding-left:1.5rem;padding-right:1.5rem}
+  .gs-sticky{padding:0.6rem 1.5rem}
+  .gs-entry{grid-template-columns:80px 1fr;gap:1.5rem}
+  .gs-year{font-size:2rem}
+  .team-section{padding:2rem 1.5rem}
+  .method-grid{grid-template-columns:1fr}
+  .rezept-cta{padding:2.5rem 1.5rem}
+  .admin-dash{padding:1.5rem}
+  nav{padding:0 1rem}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  footer{padding:1.5rem}
+  .team-group-backoffice{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:480px){
+  .hero-info{grid-template-columns:1fr}
+  .team-group-backoffice{grid-template-columns:1fr 1fr}
+  .gs-entry{grid-template-columns:1fr;gap:1rem}
+  .gs-year{position:static;font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;display:flex;align-items:center;gap:.6rem">
+    <img src="https://mein-uploads.apocdn.net/38069/logo/Logos_AAR_NA_ohne%20Schrift%20(f%C3%BCr%20SAM)@500-160.webp"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Logo" />
+    <span style="display:none;align-items:center;gap:.4rem"><span style="color:var(--red);font-size:1.4rem">✚</span> Apotheke am Römer</span>
+  </div>
+  <div class="nav-links">
+    <a href="#leistungen" onclick="anchorTo('home','leistungen')">Leistungen</a>
+    <a href="#" onclick="showPage('team');return false">Team</a>
+    <a href="#standorte" onclick="anchorTo('home','standorte')">Standorte</a>
+    <a href="#" onclick="showPage('rezept');return false">Rezept</a>
+    <a href="#" onclick="showPage('geschichte');return false">Geschichte</a>
+    <a href="#kontakt" onclick="anchorTo('home','kontakt')">Kontakt</a>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+496721995100" class="nav-phone">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      Anrufen
+    </a>
+    <a href="https://wa.me/496721995100" class="nav-wa" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <button class="nav-gear" onclick="showPage('admin')" title="Admin">⚙</button>
+  </div>
+  <button class="hamburger" onclick="toggleMobile()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="anchorTo('home','leistungen');closeMobile()">Leistungen</a>
+  <a href="#" onclick="showPage('team');closeMobile()">Team</a>
+  <a href="#" onclick="anchorTo('home','standorte');closeMobile()">Standorte</a>
+  <a href="#" onclick="showPage('rezept');closeMobile()">Rezept vorbestellen</a>
+  <a href="#" onclick="showPage('geschichte');closeMobile()">Geschichte</a>
+  <a href="#" onclick="anchorTo('home','kontakt');closeMobile()">Kontakt</a>
+  <a href="#" onclick="showPage('admin');closeMobile()">⚙ Intern</a>
+</div>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">Jetzt geöffnet</div>
+      <h1>Ihre Apotheke.<br><span>Seit über 60 Jahren.</span></h1>
+      <p class="hero-sub">Persönliche Beratung, moderner Service und ein erfahrenes Team – an zwei Standorten in Bingen am Rhein und Münster-Sarmsheim.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showPage('rezept')">Rezept einreichen</button>
+        <button class="btn btn-outline" onclick="anchorTo('home','standorte')">Standorte</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-600%2C%20Team%28verkleinert%29@1600-1600.webp"
+           onerror="this.src='https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-600%2C%20Team%28verkleinert%29@420-280-crop.webp'"
+           alt="Team Apotheke am Römer" />
+    </div>
+  </div>
+
+  <div class="hero-info">
+    <div class="info-item"><strong>2 Standorte</strong><span>Bingen & Münster-Sarmsheim</span></div>
+    <div class="info-item"><strong>Botendienst</strong><span>Lieferung noch heute</span></div>
+    <div class="info-item"><strong>E-Rezept</strong><span>Digital einlösen</span></div>
+  </div>
+
+  <section class="leistungen" id="leistungen">
+    <div class="section-label">Unsere Leistungen</div>
+    <div class="section-title">Was wir für Sie tun</div>
+    <p class="section-sub">Von der persönlichen Beratung bis zum digitalen Rezeptservice – wir sind für Sie da.</p>
+    <div class="cards-grid">
+      <div class="card"><div class="card-icon">💊</div><h3>Rezeptservice</h3><p>Rezept per App, Foto oder E-Rezept einreichen und bequem abholen oder liefern lassen.</p></div>
+      <div class="card"><div class="card-icon">🚴</div><h3>Botendienst</h3><p>Medikamente werden noch am selben Tag zu Ihnen nach Hause geliefert.</p></div>
+      <div class="card"><div class="card-icon">🌿</div><h3>Phytothek</h3><p>Die einzige Apotheke in Bingen mit einer eigenen Phytothek für Naturheilkunde und Pflanzenheilkunde.</p></div>
+      <div class="card"><div class="card-icon">💬</div><h3>Individuelle Beratung</h3><p>Persönliche, fachkundige Beratung zu Medikamenten, Gesundheit und Ernährung.</p></div>
+      <div class="card"><div class="card-icon">🛒</div><h3>Online-Shop</h3><p>Medikamente, Kosmetik und Gesundheitsprodukte bequem online bestellen.</p></div>
+      <div class="card"><div class="card-icon">🤖</div><h3>Abholautomat</h3><p>Medikamente rund um die Uhr bequem am Automaten abholen – auch außerhalb unserer Öffnungszeiten.</p></div>
+    </div>
+  </section>
+
+  <section id="standorte" style="background:var(--white)">
+    <div class="section-label">Unsere Standorte</div>
+    <div class="section-title">Zwei Apotheken, ein Team</div>
+    <p class="section-sub">Besuchen Sie uns an einem unserer beiden Standorte in der Region Bingen.</p>
+    <div class="standorte-grid">
+      <div class="standort-card">
+        <div class="standort-img">
+          <img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke%20am%20R%C3%B6mer%20(au%C3%9Fen)@1600-1600.webp" alt="Apotheke am Römer" />
+        </div>
+        <div class="standort-body">
+          <h3>Apotheke am Römer</h3>
+          <address>Saarlandstraße 121<br>55411 Bingen am Rhein</address>
+          <table class="hours-table">
+            <tr><td>Mo</td><td>08:00 – 13:00 · 14:00 – 18:30</td></tr>
+            <tr><td>Di</td><td>08:00 – 13:00 · 14:00 – 18:30</td></tr>
+            <tr><td>Mi</td><td>08:00 – 13:00 · 14:00 – 18:30</td></tr>
+            <tr><td>Do</td><td>08:00 – 13:00 · 14:00 – 18:30</td></tr>
+            <tr><td>Fr</td><td>08:00 – 13:00 · 14:00 – 18:30</td></tr>
+            <tr><td>Sa</td><td>08:00 – 13:00</td></tr>
+            <tr><td>So</td><td>Geschlossen</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="standort-card">
+        <div class="standort-img">
+          <img src="https://mein-uploads.apocdn.net/38069/miscellaneous/Nahe-Apotheke%20au%C3%9Fen%20(WO)%20(4).JPG" alt="Nahe-Apotheke" />
+        </div>
+        <div class="standort-body">
+          <h3>Nahe-Apotheke</h3>
+          <address>Saarstraße 2<br>55424 Münster-Sarmsheim</address>
+          <table class="hours-table">
+            <tr><td>Mo</td><td>08:30 – 13:00 · 14:00 – 18:30</td></tr>
+            <tr><td>Di</td><td>08:30 – 13:00 · 14:00 – 18:30</td></tr>
+            <tr><td>Mi</td><td>08:30 – 13:00</td></tr>
+            <tr><td>Do</td><td>08:30 – 13:00 · 14:00 – 18:30</td></tr>
+            <tr><td>Fr</td><td>08:30 – 13:00 · 14:00 – 18:30</td></tr>
+            <tr><td>Sa</td><td>08:30 – 12:30</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rezept-cta">
+    <div>
+      <h2>Rezept vorbestellen – schnell & unkompliziert</h2>
+      <p>Per Foto, E-Rezept oder WhatsApp – wir bereiten Ihre Medikamente vor.</p>
+    </div>
+    <button class="btn btn-primary" onclick="showPage('rezept')" style="flex-shrink:0">Jetzt vorbestellen</button>
+  </div>
+
+  <section id="kontakt" style="background:var(--grey-bg)">
+    <div class="section-label">Kontakt</div>
+    <div class="section-title">Sprechen Sie uns an</div>
+    <div class="kontakt-grid">
+      <div>
+        <div class="kontakt-item">
+          <div class="kontakt-icon">📞</div>
+          <div><h4>Telefon</h4><a href="tel:+496721995100">06721 / 99 51 00</a><br><a href="tel:+496721995101" style="font-size:.8rem;color:var(--grey-light)">06721 / 99 51 01</a></div>
+        </div>
+        <div class="kontakt-item">
+          <div class="kontakt-icon">💬</div>
+          <div><h4>WhatsApp</h4><a href="https://wa.me/496721995100">06721 / 99 51 00</a><br><small style="color:var(--grey-light);font-size:.8rem">WhatsApp Business verfügbar</small></div>
+        </div>
+        <div class="kontakt-item">
+          <div class="kontakt-icon">✉️</div>
+          <div><h4>E-Mail</h4><a href="mailto:team@apotheke-am-roemer.de">team@apotheke-am-roemer.de</a></div>
+        </div>
+        <div class="kontakt-item">
+          <div class="kontakt-icon">📠</div>
+          <div><h4>Fax</h4><p>06721 / 99 51 02</p></div>
+        </div>
+        <div class="kontakt-item">
+          <div class="kontakt-icon">📱</div>
+          <div><h4>Social Media</h4>
+            <a href="https://www.instagram.com/apotheke_am_roemer" target="_blank">Instagram: @apotheke_am_roemer</a>
+          </div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <a href="https://maps.google.com/?q=Saarlandstra%C3%9Fe+121,+55411+Bingen+am+Rhein" target="_blank">📍 In Google Maps öffnen</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 Apotheke am Römer & Nahe-Apotheke · Niklas Schellenberger</span>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/apotheke_am_roemer" target="_blank">Instagram</a>
+      <a href="#" onclick="showPage('impressum');return false">Impressum</a>
+      <a href="#" onclick="showPage('datenschutz');return false">Datenschutz</a>
+      <a href="#" onclick="showPage('agb');return false">AGB</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════ IMPRESSUM ══════════ -->
+<div id="page-impressum" class="page">
+  <div style="background:var(--grey);padding:4rem 4rem 2.5rem">
+    <div class="section-label" style="color:rgba(255,255,255,.4)">Rechtliches</div>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:800;color:var(--white)">Impressum</h1>
+  </div>
+  <div style="max-width:860px;margin:0 auto;padding:3.5rem 2rem 5rem">
+    <div style="display:grid;gap:2.5rem">
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">Angaben gemäß § 5 TMG</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          <strong style="color:var(--grey)">Apotheke am Römer</strong><br>
+          Niklas Schellenberger<br>
+          Saarlandstraße 121<br>
+          55411 Bingen am Rhein
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">Kontakt</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Telefon: <a href="tel:+496721995100" style="color:var(--grey)">06721 / 99 51 00</a><br>
+          Fax: 06721 / 99 51 02<br>
+          E-Mail: <a href="mailto:team@apotheke-am-roemer.de" style="color:var(--grey)">team@apotheke-am-roemer.de</a>
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">Berufsbezeichnung & Aufsichtsbehörde</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Berufsbezeichnung: Apotheker (verliehen in Deutschland)<br>
+          Zuständige Aufsichtsbehörde: Landesapothekerkammer Rheinland-Pfalz<br>
+          Isaac-Fulda-Allee 19, 55124 Mainz<br>
+          <a href="https://www.lak-rlp.de" target="_blank" style="color:var(--red)">www.lak-rlp.de</a>
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">Berufsrechtliche Regelungen</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Approbationsordnung für Apotheker (AAppO)<br>
+          Apothekenbetriebsordnung (ApBetrO)<br>
+          Apothekengesetz (ApoG)<br>
+          Heilmittelwerbegesetz (HWG)<br>
+          Die berufsrechtlichen Regelungen können über die Landesapothekerkammer Rheinland-Pfalz eingesehen werden.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">Zweiter Standort</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          <strong style="color:var(--grey)">Nahe-Apotheke</strong><br>
+          Niklas Schellenberger<br>
+          55424 Münster-Sarmsheim<br>
+          <a href="https://www.nahe-apotheke.de" target="_blank" style="color:var(--red)">www.nahe-apotheke.de</a>
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">Haftungsausschluss</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.<br><br>
+          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">Urheberrecht</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+        </p>
+      </div>
+
+    </div>
+    <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--grey-border)">
+      <button class="btn btn-outline" onclick="showPage('home')" style="border-color:var(--grey-border);color:var(--grey)">← Zurück zur Startseite</button>
+    </div>
+  </div>
+  <footer style="background:var(--grey);color:rgba(255,255,255,.4);padding:1.5rem 4rem;font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+    <span>© 2025 Apotheke am Römer & Nahe-Apotheke</span>
+    <div style="display:flex;gap:1.5rem">
+      <a href="#" onclick="showPage('datenschutz');return false" style="color:rgba(255,255,255,.3);text-decoration:none">Datenschutz</a>
+      <a href="#" onclick="showPage('agb');return false" style="color:rgba(255,255,255,.3);text-decoration:none">AGB</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════ DATENSCHUTZ ══════════ -->
+<div id="page-datenschutz" class="page">
+  <div style="background:var(--grey);padding:4rem 4rem 2.5rem">
+    <div class="section-label" style="color:rgba(255,255,255,.4)">Rechtliches</div>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:800;color:var(--white)">Datenschutzerklärung</h1>
+  </div>
+  <div style="max-width:860px;margin:0 auto;padding:3.5rem 2rem 5rem">
+    <div style="display:grid;gap:2.5rem">
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">1. Datenschutz auf einen Blick</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Die folgende Datenschutzerklärung gilt für die Website der Apotheke am Römer und der Nahe-Apotheke. Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Wir verarbeiten Ihre Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen der DSGVO, des TMG sowie des BDSG.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">2. Verantwortlicher</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br><br>
+          <strong style="color:var(--grey)">Niklas Schellenberger</strong><br>
+          Apotheke am Römer<br>
+          Saarlandstraße 121, 55411 Bingen am Rhein<br>
+          Tel: 06721 / 99 51 00<br>
+          E-Mail: <a href="mailto:team@apotheke-am-roemer.de" style="color:var(--red)">team@apotheke-am-roemer.de</a>
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">3. Erhebung und Verarbeitung personenbezogener Daten</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Wir erheben personenbezogene Daten nur, wenn Sie uns diese im Rahmen Ihrer Bestellung (Rezept-Service), einer Kontaktaufnahme per E-Mail, Telefon oder WhatsApp freiwillig mitteilen. Die von Ihnen bereitgestellten Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage oder Bestellung verwendet.<br><br>
+          Beim Besuch unserer Website werden automatisch Informationen allgemeiner Natur erfasst (Server-Logfiles). Diese Daten enthalten keine personenbezogenen Daten und werden nicht mit anderen Datenquellen zusammengeführt.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">4. Rezept-Service</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Wenn Sie unser Rezept-Vorbestellungs-Formular nutzen, verarbeiten wir folgende Daten: Name, Telefonnummer, hochgeladene Rezeptbilder sowie optionale Anmerkungen. Diese Daten dienen ausschließlich der Bearbeitung Ihrer Bestellung und werden nach Abschluss des Vorgangs entsprechend den gesetzlichen Aufbewahrungsfristen gelöscht. Eine Weitergabe an Dritte erfolgt nicht.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">5. WhatsApp-Kommunikation</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Wenn Sie uns über WhatsApp kontaktieren, verarbeiten wir Ihre Nachrichten zur Bearbeitung Ihrer Anfrage. WhatsApp ist ein Dienst der WhatsApp LLC, einem Unternehmen der Meta Platforms. Es gelten die Datenschutzbestimmungen von WhatsApp. Wir empfehlen, keine sensiblen Gesundheitsdaten per WhatsApp zu übermitteln.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">6. Ihre Rechte</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Sie haben jederzeit das Recht auf:<br><br>
+          • <strong style="color:var(--grey)">Auskunft</strong> über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO)<br>
+          • <strong style="color:var(--grey)">Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)<br>
+          • <strong style="color:var(--grey)">Löschung</strong> Ihrer gespeicherten Daten (Art. 17 DSGVO)<br>
+          • <strong style="color:var(--grey)">Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)<br>
+          • <strong style="color:var(--grey)">Datenübertragbarkeit</strong> (Art. 20 DSGVO)<br>
+          • <strong style="color:var(--grey)">Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)<br><br>
+          Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: <a href="mailto:team@apotheke-am-roemer.de" style="color:var(--red)">team@apotheke-am-roemer.de</a><br><br>
+          Sie haben außerdem das Recht, sich bei der zuständigen Aufsichtsbehörde zu beschweren:<br>
+          Landesbeauftragter für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz, Hintere Bleiche 34, 55116 Mainz.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">6a. Instagram</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Wir betreiben einen Instagram-Account unter <a href="https://www.instagram.com/apotheke_am_roemer" target="_blank" style="color:var(--red)">@apotheke_am_roemer</a>. Instagram ist ein Dienst der Meta Platforms Ireland Ltd., 4 Grand Canal Square, Dublin 2, Irland. Wenn Sie unsere Instagram-Seite besuchen, erhebt Meta Plattformdaten gemäß der eigenen Datenschutzrichtlinie. Wir haben keinen Einfluss auf die Datenverarbeitung durch Meta. Weitere Informationen finden Sie unter <a href="https://privacycenter.instagram.com" target="_blank" style="color:var(--red)">privacycenter.instagram.com</a>. Wir nutzen Instagram ausschließlich zur Information über Apothekenthemen, Angebote und Gesundheitstipps. Eine direkte Verarbeitung Ihrer Daten durch uns findet über Instagram nicht statt.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">7. Cookies</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Diese Website verwendet keine Tracking-Cookies oder Analyse-Tools von Drittanbietern. Technisch notwendige Informationen werden ausschließlich lokal im Browser gespeichert (z. B. Session-Daten).
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">8. Aktualität</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Mai 2025. Durch die Weiterentwicklung unserer Website kann es notwendig werden, diese Erklärung anzupassen.
+        </p>
+      </div>
+
+    </div>
+    <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--grey-border)">
+      <button class="btn btn-outline" onclick="showPage('home')" style="border-color:var(--grey-border);color:var(--grey)">← Zurück zur Startseite</button>
+    </div>
+  </div>
+  <footer style="background:var(--grey);color:rgba(255,255,255,.4);padding:1.5rem 4rem;font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+    <span>© 2025 Apotheke am Römer & Nahe-Apotheke</span>
+    <div style="display:flex;gap:1.5rem">
+      <a href="#" onclick="showPage('impressum');return false" style="color:rgba(255,255,255,.3);text-decoration:none">Impressum</a>
+      <a href="#" onclick="showPage('agb');return false" style="color:rgba(255,255,255,.3);text-decoration:none">AGB</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════ AGB ══════════ -->
+<div id="page-agb" class="page">
+  <div style="background:var(--grey);padding:4rem 4rem 2.5rem">
+    <div class="section-label" style="color:rgba(255,255,255,.4)">Rechtliches</div>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:800;color:var(--white)">Allgemeine Geschäftsbedingungen</h1>
+  </div>
+  <div style="max-width:860px;margin:0 auto;padding:3.5rem 2rem 5rem">
+    <div style="display:grid;gap:2.5rem">
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">§ 1 Geltungsbereich</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Diese Allgemeinen Geschäftsbedingungen gelten für alle Dienstleistungen der Apotheke am Römer (Inhaber: Niklas Schellenberger, Saarlandstraße 121, 55411 Bingen am Rhein) sowie der Nahe-Apotheke (55424 Münster-Sarmsheim), insbesondere für den Rezept-Vorbestellungsservice, den Botendienst und die Beratungsleistungen.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">§ 2 Rezept-Vorbestellung</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          (1) Die Rezept-Vorbestellung stellt eine unverbindliche Anfrage dar. Ein verbindlicher Kaufvertrag kommt erst mit der Abholung oder Lieferung der Ware zustande.<br><br>
+          (2) Der Rezept-Vorbestellungsservice steht ausschließlich für verschreibungspflichtige Arzneimittel mit gültigem Rezept zur Verfügung. Das Original-Rezept ist bei Abholung vorzulegen.<br><br>
+          (3) Wir behalten uns vor, eine Vorbestellung abzulehnen, sofern das eingereichte Rezept ungültig, unleserlich oder bereits eingelöst ist.<br><br>
+          (4) Vorbestellungen werden während unserer Öffnungszeiten bearbeitet. Eine Bearbeitungszeit von bis zu 2 Stunden ist vorbehalten.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">§ 3 Botendienst</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          (1) Der Botendienst ist ein kostenloser Service innerhalb unseres Liefergebietes.<br><br>
+          (2) Lieferungen erfolgen innerhalb der Öffnungszeiten und am gleichen Werktag, sofern die Bestellung bis 12:00 Uhr eingeht.<br><br>
+          (3) Für verschreibungspflichtige Arzneimittel ist die Vorlage des Original-Rezepts bei der Lieferung erforderlich. Der Empfang ist zu quittieren.<br><br>
+          (4) Bei Abwesenheit des Empfängers wird eine Benachrichtigung hinterlassen. Die Ware kann anschließend in der Apotheke abgeholt werden.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">§ 4 Preise und Zahlung</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          (1) Es gelten die zum Zeitpunkt der Abholung oder Lieferung gültigen Preise. Bei Arzneimitteln mit Preisbindung gelten die gesetzlich festgelegten Apothekenverkaufspreise.<br><br>
+          (2) Die Zahlung erfolgt in bar, per EC-Karte oder per Banküberweisung. Für Patienten mit gesetzlicher Krankenversicherung gelten die jeweiligen Zuzahlungsregelungen.<br><br>
+          (3) Privatliquidationen und Kostenvoranschläge werden auf Anfrage erstellt.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">§ 5 Haftung</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          (1) Wir haften im Rahmen der gesetzlichen Bestimmungen für Schäden, die durch grobe Fahrlässigkeit oder Vorsatz entstanden sind.<br><br>
+          (2) Für pharmazeutische Beratungsleistungen gilt die berufsrechtliche Sorgfaltspflicht gemäß Apothekengesetz und Apothekenbetriebsordnung.<br><br>
+          (3) Die Haftung für leichte Fahrlässigkeit ist, soweit gesetzlich zulässig, ausgeschlossen.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">§ 6 Datenschutz</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer <a href="#" onclick="showPage('datenschutz');return false" style="color:var(--red)">Datenschutzerklärung</a> und den geltenden gesetzlichen Bestimmungen (DSGVO, BDSG).
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">§ 7 Anwendbares Recht & Gerichtsstand</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand für alle Streitigkeiten aus dem Vertragsverhältnis ist Bingen am Rhein, sofern der Kunde Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist.
+        </p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem">§ 8 Salvatorische Klausel</h2>
+        <p style="line-height:1.9;color:var(--grey-mid)">
+          Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt die gesetzliche Regelung.
+        </p>
+      </div>
+
+      <p style="font-size:.8rem;color:var(--grey-light);border-top:1px solid var(--grey-border);padding-top:1.5rem">Stand: Mai 2025</p>
+    </div>
+    <div style="margin-top:2rem">
+      <button class="btn btn-outline" onclick="showPage('home')" style="border-color:var(--grey-border);color:var(--grey)">← Zurück zur Startseite</button>
+    </div>
+  </div>
+  <footer style="background:var(--grey);color:rgba(255,255,255,.4);padding:1.5rem 4rem;font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+    <span>© 2025 Apotheke am Römer & Nahe-Apotheke</span>
+    <div style="display:flex;gap:1.5rem">
+      <a href="#" onclick="showPage('impressum');return false" style="color:rgba(255,255,255,.3);text-decoration:none">Impressum</a>
+      <a href="#" onclick="showPage('datenschutz');return false" style="color:rgba(255,255,255,.3);text-decoration:none">Datenschutz</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════ GESCHICHTE ══════════ -->
+<div id="page-geschichte" class="page">
+  <div class="gs-hero">
+    <div class="section-label">Über uns</div>
+    <h1>Unsere Geschichte</h1>
+    <p style="color:rgba(255,255,255,.6);margin-top:.75rem;font-size:.95rem;max-width:500px">Seit 1965 steht die Apotheke am Römer für Vertrauen, Kompetenz und persönliche Beratung in Bingen.</p>
+  </div>
+  <div class="gs-sticky" id="gsStickyBar">
+    <a href="#gs-1965" class="active" onclick="scrollGs(event,'gs-1965')">1965</a>
+    <a href="#gs-1988" onclick="scrollGs(event,'gs-1988')">1988</a>
+    <a href="#gs-2018" onclick="scrollGs(event,'gs-2018')">2018</a>
+    <a href="#gs-2021" onclick="scrollGs(event,'gs-2021')">2021</a>
+    <a href="#gs-heute" onclick="scrollGs(event,'gs-heute')">Heute</a>
+  </div>
+  <div class="gs-content">
+    <div class="gs-entry" id="gs-1965">
+      <div class="gs-year">1965</div>
+      <div class="gs-body">
+        <h2>Gründung durch Georg Fuhry</h2>
+        <p>Im Jahr 1965 gründete Apotheker Georg Fuhry die Apotheke am Römer in Bingen-Büdesheim. Mit einem klaren Leitbild – persönliche Beratung und höchste pharmazeutische Qualität – legte er den Grundstein für eine der beständigsten Apotheken der Region.</p>
+        <div class="gs-imgs">
+          <img src="https://mein-uploads.apocdn.net/38069/miscellaneous/2025-09-09%2021-38%201.JPEG" alt="Georg Fuhry" loading="lazy" />
+          <img src="https://mein-uploads.apocdn.net/38069/miscellaneous/2025-09-09%2021-36.JPEG" alt="Frühe Jahre" loading="lazy" />
+        </div>
+      </div>
+    </div>
+    <div class="gs-entry" id="gs-1988">
+      <div class="gs-year">1988</div>
+      <div class="gs-body">
+        <h2>Übernahme durch Gernot Schellenberger</h2>
+        <p>Apotheker Gernot Schellenberger übernahm 1988 die Apotheke und führte das Erbe Georg Fuhrys weiter. Unter seiner Leitung wurde die Apotheke modernisiert und zu einem noch umfassenderen Gesundheitszentrum ausgebaut.</p>
+        <div class="gs-imgs">
+          <img src="https://mein-uploads.apocdn.net/38069/miscellaneous/2025-09-09%2021-41.JPEG" alt="Gernot Schellenberger" loading="lazy" />
+          <img src="https://mein-uploads.apocdn.net/38069/miscellaneous/2025-09-09%2022-02%201.JPEG" alt="Umbau" loading="lazy" />
+        </div>
+      </div>
+    </div>
+    <div class="gs-entry" id="gs-2018">
+      <div class="gs-year">2018</div>
+      <div class="gs-body">
+        <h2>Erweiterung: Die Nahe-Apotheke</h2>
+        <p>Im August 2018 wurde mit der Übernahme der Nahe-Apotheke in Münster-Sarmsheim ein Filialverbund gegründet. Seither versorgen zwei Standorte die Region mit pharmazeutischer Kompetenz und persönlichem Service.</p>
+        <div class="gs-imgs">
+          <img src="https://mein-uploads.apocdn.net/38069/miscellaneous/Nahe-Apotheke%20au%C3%9Fen%20(WO)%20(4).JPG" alt="Nahe-Apotheke" loading="lazy" />
+        </div>
+      </div>
+    </div>
+    <div class="gs-entry" id="gs-2021">
+      <div class="gs-year">2021</div>
+      <div class="gs-body">
+        <h2>Niklas Schellenberger übernimmt</h2>
+        <p>Im Februar 2021 trat mit Niklas Schellenberger die nächste Generation in die Verantwortung. Als Fachapotheker für Allgemeinpharmazie steht er für die Verbindung von bewährter Tradition und moderner Medizin.</p>
+        <div class="gs-imgs">
+          <img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke%20am%20R%C3%B6mer%20(au%C3%9Fen)@1600-1600.webp" alt="Apotheke am Römer heute" loading="lazy" />
+          <img src="https://mein-uploads.apocdn.net/38069/miscellaneous/Apotheke_am_Roemer_web%20-%20001%20(Niklas%20Schellenberger)@1600-1600.webp" alt="Niklas Schellenberger" loading="lazy" />
+        </div>
+      </div>
+    </div>
+    <div id="gs-heute" class="gs-heute">
+      <h2>Heute</h2>
+      <p>Die Apotheke am Römer und die Nahe-Apotheke stehen heute für modernes Apothekenhandwerk mit persönlichem Gesicht: 26 Mitarbeiterinnen und Mitarbeiter, digitale Services und die einzige Phytothek in Bingen.</p>
+      <div class="heute-grid">
+        <div class="heute-item"><div class="icon">🌿</div><p>Einzige Phytothek in Bingen</p></div>
+        <div class="heute-item"><div class="icon">👥</div><p>26-köpfiges Team</p></div>
+        <div class="heute-item"><div class="icon">📱</div><p>Digitaler Rezeptservice</p></div>
+        <div class="heute-item"><div class="icon">🚴</div><p>Botendienst vor Ort</p></div>
+        <div class="heute-item"><div class="icon">📍</div><p>2 Standorte in der Region</p></div>
+        <div class="heute-item"><div class="icon">⭐</div><p>Über 60 Jahre Vertrauen</p></div>
+      </div>
+      <button class="btn btn-outline" onclick="showPage('home')" style="margin-top:2rem;border-color:rgba(255,255,255,.4)">Zurück zur Startseite</button>
+    </div>
+  </div>
+  <footer style="background:var(--grey);color:rgba(255,255,255,.4);padding:1.5rem 4rem;font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+    <span>© 2025 Apotheke am Römer & Nahe-Apotheke</span>
+    <div style="display:flex;gap:1.5rem"><a href="https://www.apotheke-am-roemer.de/impressum" target="_blank" style="color:rgba(255,255,255,.3);text-decoration:none">Impressum</a><a href="https://www.apotheke-am-roemer.de/datenschutz" target="_blank" style="color:rgba(255,255,255,.3);text-decoration:none">Datenschutz</a></div>
+  </footer>
+</div>
+
+<!-- ══════════ TEAM ══════════ -->
+<div id="page-team" class="page">
+  <div class="team-hero">
+    <div class="section-label">Unser Team</div>
+    <h1>26 Menschen.<br>Eine Leidenschaft.</h1>
+    <p style="color:rgba(255,255,255,.6);margin-top:.75rem;font-size:.95rem">Engagiert, kompetent und immer für Sie da – an beiden Standorten.</p>
+  </div>
+
+  <div class="team-section">
+    <div class="team-group-title">Apothekerteam</div>
+    <div class="team-grid">
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_web%20-%20001%20%28Niklas%20Schellenberger%29@200-200-crop.webp" alt="Niklas Schellenberger" loading="lazy"><h4>Niklas Schellenberger</h4><p>Apotheker & Inhaber</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_web%20-%20005%20%28Gernot%20Schellenberger%29@200-200-crop.webp" alt="Gernot Schellenberger" loading="lazy"><h4>Gernot Schellenberger</h4><p>Apotheker & Pharmazierat</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/geyer@200-200-crop.webp" alt="Andrea Geyer" loading="lazy"><h4>Andrea Geyer</h4><p>Apothekerin</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/ergezinger-dettmeier@200-200-crop.webp" alt="Sabine Ergezinger-Dettmeier" loading="lazy"><h4>Sabine Ergezinger-Dettmeier</h4><p>Apothekerin & Filialleitung</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/kau@200-200-crop.webp" alt="Vera Kau" loading="lazy"><h4>Vera Kau</h4><p>Apothekerin</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-358%281%29@200-200-crop.webp" alt="Hartmut Kunz" loading="lazy"><h4>Hartmut Kunz</h4><p>Apotheker</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-392%2C%20Basta%2C%20YOstina@200-200-crop.webp" alt="Yostina Basta" loading="lazy"><h4>Yostina Basta</h4><p>Apothekerin i. A.</p></div>
+    </div>
+  </div>
+
+  <div class="team-section" style="background:var(--grey-bg)">
+    <div class="team-group-title">PTA-Team</div>
+    <div class="team-grid">
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/wendel-seyler@200-200-crop.webp" alt="Heike Wendel-Seyer" loading="lazy"><h4>Heike Wendel-Seyer</h4><p>PTA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_web%20-%20010%20%28Iligija%20Zimbelmann%29%281%29@200-200-crop.webp" alt="Iligija Zimbelmann" loading="lazy"><h4>Iligija Zimbelmann</h4><p>PTA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/bakovic@200-200-crop.webp" alt="Marija Bakovic" loading="lazy"><h4>Marija Bakovic</h4><p>PTA & PKA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/gaens_1@200-200-crop.webp" alt="Nico Gäns" loading="lazy"><h4>Nico Gäns</h4><p>PTA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-331%20-%20Kopie%20-%20Kopie@200-200-crop.webp" alt="Feven Tesfaye" loading="lazy"><h4>Feven Tesfaye</h4><p>PTA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-424%20-%20Kopie@200-200-crop.webp" alt="Sarah Rosen" loading="lazy"><h4>Sarah Rosen</h4><p>PTA</p></div>
+    </div>
+  </div>
+
+  <div class="team-section">
+    <div class="team-group-title">PKA</div>
+    <div class="team-grid">
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/harreus@200-200-crop.webp" alt="Andrea Harreus" loading="lazy"><h4>Andrea Harreus</h4><p>PKA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/huettner@200-200-crop.webp" alt="Severine Hüttner" loading="lazy"><h4>Severine Hüttner</h4><p>PKA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/dickescheid@200-200-crop.webp" alt="Michaela Dickescheid" loading="lazy"><h4>Michaela Dickescheid</h4><p>PKA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/zaytouni@200-200-crop.webp" alt="Imane Zaytouni" loading="lazy"><h4>Imane Zaytouni</h4><p>PKA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-460@200-200-crop.webp" alt="Kübra Selbisu" loading="lazy"><h4>Kübra Selbisu</h4><p>PKA</p></div>
+    </div>
+  </div>
+
+  <div class="team-section" style="background:var(--grey-bg)">
+    <div class="team-group-title">Backoffice</div>
+    <div class="team-group-backoffice">
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_web%20-%20017@200-200-crop.webp" alt="Marita Schellenberger" loading="lazy"><h4>Marita Schellenberger</h4><p>Backoffice</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/muench@200-200-crop.webp" alt="Ann-Kathrin Münch" loading="lazy"><h4>Ann-Kathrin Münch</h4><p>Backoffice</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/schellenberger_1@200-200-crop.webp" alt="Till Schellenberger" loading="lazy"><h4>Till Schellenberger</h4><p>Backoffice</p></div>
+    </div>
+  </div>
+
+  <div class="team-section">
+    <div class="team-group-title">Auszubildende</div>
+    <div class="team-grid">
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-211@200-200-crop.webp" alt="Yasmin Mahmoodi" loading="lazy"><h4>Yasmin Mahmoodi</h4><p>Auszubildende PTA</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/Apotheke_am_Roemer_2025-100@200-200-crop.webp" alt="Asar Asaad" loading="lazy"><h4>Asar Asaad</h4><p>Auszubildende PTA</p></div>
+    </div>
+  </div>
+
+  <div class="team-section" style="background:var(--grey-bg)">
+    <div class="team-group-title">Botendienst</div>
+    <div class="team-grid">
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/schoepperle_1@200-200-crop.webp" alt="Marlies Schöpperle" loading="lazy"><h4>Marlies Schöpperle</h4><p>Botendienst</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/schiefer@200-200-crop.webp" alt="Alfred Schiefer" loading="lazy"><h4>Alfred Schiefer</h4><p>Botendienst</p></div>
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/effertz@200-200-crop.webp" alt="Katrin Effertz" loading="lazy"><h4>Katrin Effertz</h4><p>Botendienst</p></div>
+    </div>
+  </div>
+
+  <div class="team-section">
+    <div class="team-group-title">Reinigung</div>
+    <div class="team-grid">
+      <div class="team-card"><img src="https://mein-uploads.apocdn.net/38069/teammembers/ehrenberg@200-200-crop.webp" alt="Karin Ehrenberg" loading="lazy"><h4>Karin Ehrenberg</h4><p>Reinigungskraft</p></div>
+    </div>
+  </div>
+
+  <footer style="background:var(--grey);color:rgba(255,255,255,.4);padding:1.5rem 4rem;font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+    <span>© 2025 Apotheke am Römer & Nahe-Apotheke</span>
+    <button class="btn btn-outline" onclick="showPage('home')" style="font-size:.75rem;padding:.4rem 1rem;border-color:rgba(255,255,255,.25)">← Startseite</button>
+  </footer>
+</div>
+
+<!-- ══════════ REZEPT ══════════ -->
+<div id="page-rezept" class="page">
+  <div style="background:var(--grey);padding:3rem 2rem 2rem;text-align:center">
+    <div class="section-label" style="color:rgba(255,255,255,.5)">Service</div>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:800;color:var(--white)">Rezept vorbestellen</h1>
+  </div>
+  <div class="rz-wrap">
+    <div class="rz-steps" id="rzSteps">
+      <div class="rz-step"><div class="rz-step-num active" id="rzN1">1</div></div>
+      <div class="rz-step-line" id="rzL1"></div>
+      <div class="rz-step"><div class="rz-step-num" id="rzN2">2</div></div>
+      <div class="rz-step-line" id="rzL2"></div>
+      <div class="rz-step"><div class="rz-step-num" id="rzN3">3</div></div>
+      <div class="rz-step-line" id="rzL3"></div>
+      <div class="rz-step"><div class="rz-step-num" id="rzN4">4</div></div>
+      <div class="rz-step-line" id="rzL4"></div>
+      <div class="rz-step"><div class="rz-step-num" id="rzN5">5</div></div>
+    </div>
+
+    <!-- Step 1: Datenschutz -->
+    <div class="rz-panel active" id="rzP1">
+      <h2>Datenschutz</h2>
+      <p>Bevor Sie fortfahren, stimmen Sie bitte der Verarbeitung Ihrer Daten zu. Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Bestellung genutzt.</p>
+      <div class="rz-check" onclick="document.getElementById('dsCheck').click()">
+        <input type="checkbox" id="dsCheck" onchange="document.getElementById('rzNext1').disabled=!this.checked">
+        <label for="dsCheck">Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="#" onclick="showPage('datenschutz');return false" style="color:var(--red)">Datenschutzerklärung</a> zu.</label>
+      </div>
+      <div class="rz-nav"><span></span><button id="rzNext1" class="btn btn-primary" onclick="rzGo(2)" disabled>Weiter →</button></div>
+    </div>
+
+    <!-- Step 2: Methode -->
+    <div class="rz-panel" id="rzP2">
+      <h2>Methode wählen</h2>
+      <p>Wie möchten Sie Ihr Rezept übermitteln?</p>
+      <div class="method-grid">
+        <div class="method-card" onclick="selectMethod('foto')"><div class="m-icon">📷</div><h4>Foto aufnehmen</h4><p>Rezept mit Kamera fotografieren</p></div>
+        <div class="method-card" onclick="selectMethod('upload')"><div class="m-icon">📁</div><h4>Bild hochladen</h4><p>Foto aus der Galerie wählen</p></div>
+        <div class="method-card" onclick="selectMethod('erezept')"><div class="m-icon">📲</div><h4>E-Rezept</h4><p>QR-Code oder Token eingeben</p></div>
+        <div class="method-card" onclick="selectMethod('whatsapp')"><div class="m-icon">💬</div><h4>Per WhatsApp</h4><p>Direkt über WhatsApp schicken</p></div>
+      </div>
+      <div class="rz-nav"><button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="rzGo(1)">← Zurück</button><button id="rzNext2" class="btn btn-primary" onclick="rzGo(3)" disabled>Weiter →</button></div>
+    </div>
+
+    <!-- Step 3: Einreichen -->
+    <div class="rz-panel" id="rzP3">
+      <h2>Rezept einreichen</h2>
+      <div id="rzUploadArea">
+        <div class="upload-area" onclick="document.getElementById('rzFile').click()">
+          <input type="file" id="rzFile" accept="image/*" onchange="previewFile(this)">
+          <div class="u-icon">📎</div>
+          <p>Klicken oder Datei hierher ziehen</p>
+          <p style="font-size:.75rem;margin-top:.3rem">JPG, PNG, PDF bis 10 MB</p>
+        </div>
+        <div id="rzPreview" style="display:none">
+          <img id="rzPreviewImg" class="upload-preview" alt="Vorschau">
+          <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey);font-size:.8rem" onclick="clearPreview()">✕ Entfernen</button>
+        </div>
+      </div>
+      <div id="rzErezeptArea" style="display:none">
+        <div class="form-group"><label>E-Rezept Token oder Code</label><input type="text" placeholder="Token eingeben"></div>
+      </div>
+      <div id="rzWaArea" style="display:none">
+        <p>Schicken Sie Ihr Rezept direkt per WhatsApp an uns:</p>
+        <a href="https://wa.me/496721995100?text=Hallo%2C%20ich%20m%C3%B6chte%20ein%20Rezept%20vorbestellen." class="btn btn-primary" target="_blank" style="margin-top:.5rem;display:inline-flex">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:.4rem"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp öffnen
+        </a>
+      </div>
+      <div class="rz-nav"><button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="rzGo(2)">← Zurück</button><button class="btn btn-primary" onclick="rzGo(4)">Weiter →</button></div>
+    </div>
+
+    <!-- Step 4: Kontaktdaten -->
+    <div class="rz-panel" id="rzP4">
+      <h2>Kontaktdaten</h2>
+      <div class="form-group"><label>Name *</label><input type="text" placeholder="Vor- und Nachname" required></div>
+      <div class="form-group"><label>Telefon *</label><input type="tel" placeholder="06721 / ..." required></div>
+      <div class="form-group"><label>Standort</label>
+        <select>
+          <option>Apotheke am Römer – Bingen</option>
+          <option>Nahe-Apotheke – Münster-Sarmsheim</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Gewünschte Abholzeit</label><input type="text" placeholder="z. B. Heute ab 15:00 Uhr"></div>
+      <div class="form-group"><label>Anmerkungen</label><textarea placeholder="Sonstige Hinweise..."></textarea></div>
+      <div class="rz-nav"><button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="rzGo(3)">← Zurück</button><button class="btn btn-primary" onclick="rzGo(5)">Absenden →</button></div>
+    </div>
+
+    <!-- Step 5: Bestätigung -->
+    <div class="rz-panel" id="rzP5">
+      <div class="success-box">
+        <div class="success-icon">✅</div>
+        <h2>Vielen Dank!</h2>
+        <p>Ihre Bestellung ist bei uns eingegangen. Wir melden uns in Kürze telefonisch bei Ihnen. Bei dringenden Fragen erreichen Sie uns unter <strong>06721 / 99 51 00</strong>.</p>
+        <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="rzReset()">Weiteres Rezept einreichen</button>
+          <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="showPage('home')">Zur Startseite</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ADMIN ══════════ -->
+<div id="page-admin" class="page">
+  <div id="adminLogin">
+    <div class="admin-login">
+      <h2 style="margin-bottom:.5rem">Interner Bereich</h2>
+      <p>Nur für Mitarbeiter der Apotheke am Römer</p>
+      <div id="loginErr" class="login-err">Benutzername oder Passwort falsch.</div>
+      <div class="form-group"><input type="text" id="loginUser" placeholder="Benutzername" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="form-group"><input type="password" id="loginPass" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="btn btn-primary" style="width:100%" onclick="doLogin()">Anmelden</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="adminDash" style="display:none">
+    <div style="background:var(--grey);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div style="display:flex;align-items:center;gap:1.5rem">
+        <div>
+          <div class="section-label" style="color:rgba(255,255,255,.4)">Internes Tool</div>
+          <h1 style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white)">Content Creator</h1>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:4px;padding:.5rem .85rem;display:flex;align-items:center;gap:.5rem">
+          <span style="font-size:.72rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px">API-Key</span>
+          <input type="password" id="apiKeyInput" placeholder="sk-ant-..." style="border:none;background:transparent;font-size:.82rem;width:200px;color:var(--white);font-family:monospace;outline:none" />
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <div id="weatherBadge" style="font-size:.78rem;color:rgba(255,255,255,.5)">Wetter lädt...</div>
+        <button class="btn btn-outline" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.5);font-size:.78rem;padding:.4rem .9rem" onclick="doLogout()">Abmelden</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:200px 1fr 370px;min-height:calc(100vh - 112px)">
+
+      <!-- ── SIDEBAR ── -->
+      <div class="admin-sidebar">
+        <div class="admin-nav-section">Grafiken</div>
+        <div class="admin-nav-item active" onclick="modTab(this,'nd')"><span class="admin-nav-icon">📅</span>Notdienst</div>
+        <div class="admin-nav-item" onclick="modTab(this,'pollen')"><span class="admin-nav-icon">🌿</span>Pollenflug</div>
+        <div class="admin-nav-item" onclick="modTab(this,'wetter')"><span class="admin-nav-icon">☀️</span>Wetter</div>
+        <div class="admin-nav-item" onclick="modTab(this,'gesundheitstage')"><span class="admin-nav-icon">🎗️</span>Gesundheitstage</div>
+        <div class="admin-nav-item" onclick="modTab(this,'tipp')"><span class="admin-nav-icon">💡</span>Apothekentipp</div>
+        <div class="admin-nav-item" onclick="modTab(this,'reise')"><span class="admin-nav-icon">🧳</span>Reiseapotheke</div>
+        <div class="admin-nav-item" onclick="modTab(this,'atem')"><span class="admin-nav-icon">🦠</span>Atemwegs-Lage</div>
+        <div class="admin-nav-item" onclick="modTab(this,'feiertag')"><span class="admin-nav-icon">🎉</span>Feiertag</div>
+        <div class="admin-nav-divider"></div>
+        <div class="admin-nav-section">KI-Tools</div>
+        <div class="admin-nav-item" onclick="modTab(this,'social')"><span class="admin-nav-icon">📸</span>Social Media</div>
+      </div>
+
+      <!-- ── MODULE CONTENT (Funnel) ── -->
+      <div style="padding:2rem 2.5rem;overflow-y:auto;max-height:calc(100vh - 112px)">
+
+        <!-- NOTDIENST -->
+        <div class="mod-panel active" id="mod-nd">
+          <div class="mod-title">📅 Notdienst-Plan</div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">1</span><span class="funnel-title">Daten laden</span></div>
+            <div class="funnel-body">
+              <button id="ndAktuBtn" class="btn btn-primary" onclick="ndAktualisieren(this)" style="width:100%;font-size:.95rem;padding:.8rem 1rem;margin-bottom:.75rem;letter-spacing:.3px">
+                🔄 Notdienste aktualisieren
+              </button>
+              <div id="ndImportStatus" style="font-size:.78rem;min-height:18px;margin-bottom:.5rem"></div>
+              <!-- Manueller Paste-Fallback (wird bei Fehler eingeblendet) -->
+              <div id="ndPasteWrap" style="display:none;background:var(--grey-bg);border:1.5px solid var(--grey-border);border-radius:6px;padding:.9rem">
+                <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--grey-mid);margin-bottom:.6rem">📋 Manueller Import (Strg+A → Strg+C auf aponet.de)</div>
+                <textarea id="ndPasteText" rows="3" style="width:100%;padding:.6rem;border:1.5px solid var(--grey-border);border-radius:4px;font-size:.8rem;resize:vertical;background:#fff" placeholder="Hier Strg+V → wird automatisch verarbeitet (kein API-Key nötig) ✨"></textarea>
+              </div>
+              <div class="form-group" style="margin-top:.75rem;margin-bottom:0"><label style="font-size:.72rem">Datum / Woche</label><input type="week" id="ndKw" style="max-width:180px" oninput="ndLivePreview()"></div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">2</span><span class="funnel-title">Notdienste eintragen</span></div>
+            <div class="funnel-body"><div id="ndDays"></div></div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">3</span><span class="funnel-title">Format & Export</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.75rem;align-items:center">
+                <span style="font-size:.78rem;font-weight:700;color:var(--grey-mid)">Format:</span>
+                <label style="font-size:.82rem"><input type="radio" name="ndFmt" value="week" checked onchange="ndLivePreview()"> Woche (1080×1350)</label>
+                <label style="font-size:.82rem"><input type="radio" name="ndFmt" value="story" onchange="ndLivePreview()"> Story (1080×1920)</label>
+                <label style="font-size:.82rem"><input type="radio" name="ndFmt" value="day" onchange="ndLivePreview()"> Tageskarte</label>
+              </div>
+              <div style="display:flex;gap:.75rem">
+                <button class="btn btn-primary" onclick="ndDownloadCurrent()">📥 Herunterladen</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="ndDownloadAll()">📦 Alle exportieren</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POLLENFLUG -->
+        <div class="mod-panel" id="mod-pollen">
+          <div class="mod-title">🌿 Pollenflug</div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">1</span><span class="funnel-title">Daten laden</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+                <button class="btn btn-primary" style="font-size:.8rem" onclick="loadDWDPollen(this)">🔄 DWD laden</button>
+                <span style="font-size:.78rem;color:var(--grey-light)">Automatisch vom Deutschen Wetterdienst</span>
+              </div>
+              <div id="pollenStatus" style="font-size:.78rem;margin-top:.5rem;color:var(--grey-light)">Lädt beim Anmelden automatisch…</div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">2</span><span class="funnel-title">Werte anpassen</span></div>
+            <div class="funnel-body"><div id="pollenSliders"></div></div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">3</span><span class="funnel-title">Exportieren</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.75rem">
+                <button class="btn btn-primary" onclick="pollenDownload('beitrag')">📥 Beitrag</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="pollenDownload('story')">📥 Story</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WETTER -->
+        <div class="mod-panel" id="mod-wetter">
+          <div class="mod-title">☀️ Wetter & Gesundheit</div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">1</span><span class="funnel-title">Daten laden</span></div>
+            <div class="funnel-body">
+              <button class="btn btn-primary" onclick="loadWetter()">🔄 Wetter laden (Bingen)</button>
+              <div id="wetterStatus" style="font-size:.82rem;color:var(--grey-light);margin-top:.5rem"></div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">2</span><span class="funnel-title">Anpassen</span></div>
+            <div class="funnel-body">
+              <div id="wetterForm">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+                  <div class="form-group"><label>Temperatur (°C)</label><input type="number" id="wTemp" oninput="wetterPreview()"></div>
+                  <div class="form-group"><label>UV-Index</label><input type="number" id="wUV" min="0" max="11" oninput="wetterPreview()"></div>
+                  <div class="form-group"><label>Wetterlage</label>
+                    <select id="wLage" oninput="wetterPreview()">
+                      <option>Sonnig</option><option>Leicht bewölkt</option><option>Bewölkt</option><option>Regnerisch</option><option>Gewitter</option><option>Schnee</option>
+                    </select>
+                  </div>
+                  <div class="form-group"><label>Niederschlag (mm)</label><input type="number" id="wRegen" min="0" oninput="wetterPreview()"></div>
+                </div>
+                <div class="form-group"><label>Apotheken-Empfehlung</label><textarea id="wTipp" rows="2" oninput="wetterPreview()" placeholder="Wird automatisch vorgeschlagen…"></textarea></div>
+              </div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">3</span><span class="funnel-title">Exportieren</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.75rem">
+                <button class="btn btn-primary" onclick="wetterDownload('beitrag')">📥 Beitrag</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="wetterDownload('story')">📥 Story</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GESUNDHEITSTAGE -->
+        <div class="mod-panel" id="mod-gesundheitstage">
+          <div class="mod-title">🎗️ Gesundheitstage</div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">1</span><span class="funnel-title">Datum wählen</span></div>
+            <div class="funnel-body">
+              <div id="gesundheitstageListe" style="max-height:280px;overflow-y:auto"></div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">2</span><span class="funnel-title">Text anpassen</span></div>
+            <div class="funnel-body">
+              <div class="form-group" style="margin:0"><label>Beschriftung</label><input type="text" id="gtCustomText" oninput="gtPreview()" placeholder="Wird automatisch aus der Auswahl befüllt"></div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">3</span><span class="funnel-title">Exportieren</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.75rem">
+                <button class="btn btn-primary" onclick="gtDownload('beitrag')">📥 Beitrag</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="gtDownload('story')">📥 Story</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APOTHEKENTIPP -->
+        <div class="mod-panel" id="mod-tipp">
+          <div class="mod-title">💡 Apothekentipp</div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">1</span><span class="funnel-title">Kategorie wählen</span></div>
+            <div class="funnel-body">
+              <div class="form-group" style="margin:0"><label>Kategorie</label>
+                <select id="tippKat" oninput="tippRandom()">
+                  <option>Sommer & Hitze</option><option>Winter & Erkältung</option><option>Allergie & Pollen</option>
+                  <option>Haut & Pflege</option><option>Verdauung</option><option>Schlaf & Stress</option>
+                  <option>Vitamine & Nahrungsergänzung</option><option>Reisemedizin</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">2</span><span class="funnel-title">Tipp auswählen</span></div>
+            <div class="funnel-body">
+              <div class="form-group"><label>Tipp-Text</label><textarea id="tippText" rows="3" oninput="tippPreview()" placeholder="Tipp hier eingeben oder zufällig generieren..."></textarea></div>
+              <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey);font-size:.82rem" onclick="tippRandom()">🎲 Zufälliger Tipp</button>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">3</span><span class="funnel-title">Exportieren</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.75rem">
+                <button class="btn btn-primary" onclick="tippDownload('beitrag')">📥 Beitrag</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="tippDownload('story')">📥 Story</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REISEAPOTHEKE -->
+        <div class="mod-panel" id="mod-reise">
+          <div class="mod-title">🧳 Reiseapotheke</div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">1</span><span class="funnel-title">Reiseziel wählen</span></div>
+            <div class="funnel-body">
+              <div class="form-group" style="margin:0"><label>Destination</label>
+                <select id="reiseZiel" oninput="reisePreview();document.getElementById('reiseListe').value=REISE_LISTEN[this.value]||''">
+                  <option value="strand">🏖️ Strand & Sommer</option>
+                  <option value="berge">🏔️ Berge & Wandern</option>
+                  <option value="tropen">🌴 Tropen & Fernreise</option>
+                  <option value="city">🏙️ Städtereise</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">2</span><span class="funnel-title">Checkliste anpassen</span></div>
+            <div class="funnel-body">
+              <textarea id="reiseListe" rows="8" oninput="reisePreview()" style="width:100%;padding:.6rem;border:1.5px solid var(--grey-border);border-radius:3px;font-size:.82rem;resize:vertical"></textarea>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">3</span><span class="funnel-title">Exportieren</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.75rem">
+                <button class="btn btn-primary" onclick="reiseDownload('beitrag')">📥 Beitrag</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="reiseDownload('story')">📥 Story</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ATEMWEGS-LAGE -->
+        <div class="mod-panel" id="mod-atem">
+          <div class="mod-title">🦠 Atemwegs-Lage</div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">1</span><span class="funnel-title">Daten laden</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+                <button class="btn btn-primary" style="font-size:.8rem" onclick="loadRKIAtem(this)">🔄 RKI laden</button>
+                <span style="font-size:.78rem;color:var(--grey-light)">ARE-Surveillance · Wochenbericht</span>
+              </div>
+              <div id="atemStatus" style="font-size:.78rem;margin-top:.5rem;color:var(--grey-light)">Lädt beim Anmelden automatisch…</div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">2</span><span class="funnel-title">Aktivität anpassen</span></div>
+            <div class="funnel-body">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+                <div class="form-group"><label>Influenza-Aktivität</label>
+                  <select id="aInflu" oninput="atemPreview()"><option>Keine</option><option>Gering</option><option>Moderat</option><option>Hoch</option><option>Sehr hoch</option></select>
+                </div>
+                <div class="form-group"><label>COVID-Aktivität</label>
+                  <select id="aCovid" oninput="atemPreview()"><option>Keine</option><option>Gering</option><option>Moderat</option><option>Hoch</option><option>Sehr hoch</option></select>
+                </div>
+                <div class="form-group"><label>RSV-Aktivität</label>
+                  <select id="aRSV" oninput="atemPreview()"><option>Keine</option><option>Gering</option><option>Moderat</option><option>Hoch</option><option>Sehr hoch</option></select>
+                </div>
+                <div class="form-group"><label>Tendenz</label>
+                  <select id="aTendenz" oninput="atemPreview()"><option>↘ Abnehmend</option><option>→ Stabil</option><option>↗ Zunehmend</option></select>
+                </div>
+              </div>
+              <div class="form-group"><label>Empfehlung</label><textarea id="aEmpfehlung" rows="2" oninput="atemPreview()" placeholder="z. B. Hände waschen, Lüften, Vitamin C..."></textarea></div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">3</span><span class="funnel-title">Exportieren</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.75rem">
+                <button class="btn btn-primary" onclick="atemDownload('beitrag')">📥 Beitrag</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="atemDownload('story')">📥 Story</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FEIERTAG -->
+        <div class="mod-panel" id="mod-feiertag">
+          <div class="mod-title">🎉 Feiertags-Notdienst</div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">1</span><span class="funnel-title">Feiertag laden</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+                <button class="btn btn-primary" style="font-size:.8rem" onclick="loadFeiertage(this)">📅 Nächsten Feiertag laden</button>
+                <span style="font-size:.78rem;color:var(--grey-light)">Feiertage Rheinland-Pfalz</span>
+              </div>
+              <div id="ftStatus" style="font-size:.78rem;margin-top:.5rem;color:var(--grey-light)">Lädt beim Anmelden automatisch…</div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">2</span><span class="funnel-title">Details eingeben</span></div>
+            <div class="funnel-body">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+                <div class="form-group"><label>Feiertag</label><input type="text" id="ftFeiertag" oninput="feiertagPreview()" placeholder="z. B. Pfingstmontag"></div>
+                <div class="form-group"><label>Datum</label><input type="date" id="ftDatum" oninput="feiertagPreview()"></div>
+                <div class="form-group"><label>Apotheke im Notdienst</label><input type="text" id="ftApotheke" oninput="feiertagPreview()" placeholder="Name der Apotheke"></div>
+                <div class="form-group"><label>Uhrzeit</label><input type="text" id="ftZeit" oninput="feiertagPreview()" placeholder="z. B. 08:00–20:00 Uhr"></div>
+              </div>
+              <div class="form-group"><label>Adresse</label><input type="text" id="ftAdresse" oninput="feiertagPreview()" placeholder="Straße, PLZ Ort"></div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">3</span><span class="funnel-title">Exportieren</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.75rem">
+                <button class="btn btn-primary" onclick="feiertagDownload('beitrag')">📥 Beitrag</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="feiertagDownload('story')">📥 Story</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOCIAL MEDIA -->
+        <div class="mod-panel" id="mod-social">
+          <div class="mod-title">📸 Social Media – KI</div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">1</span><span class="funnel-title">API-Key eingeben</span></div>
+            <div class="funnel-body">
+              <div class="form-group" style="margin:0">
+                <label>Claude API-Key</label>
+                <input type="password" id="apiKeyInputSocial" placeholder="sk-ant-…" style="font-family:monospace" oninput="document.getElementById('apiKeyInput').value=this.value;localStorage.setItem('apoApiKey',this.value)">
+              </div>
+              <p style="font-size:.75rem;color:var(--grey-light);margin-top:.4rem">Einmalig eingeben – wird gespeichert. Erhältlich auf <a href="https://console.anthropic.com" target="_blank" style="color:var(--red)">console.anthropic.com</a></p>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">2</span><span class="funnel-title">Kanal & Inhalt wählen</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
+                <button class="admin-sub-tab active" onclick="socialTab(this,'insta')">📸 Instagram</button>
+                <button class="admin-sub-tab" onclick="socialTab(this,'fb')">📘 Facebook</button>
+                <button class="admin-sub-tab" onclick="socialTab(this,'nl')">📧 Newsletter</button>
+              </div>
+              <div class="social-panel active" id="panel-insta">
+                <div class="form-group"><label>Thema</label>
+                  <select id="instaThema" onchange="this.value==='custom'?document.getElementById('instaCustomWrap').style.display='block':document.getElementById('instaCustomWrap').style.display='none'">
+                    <option>Saisonaler Gesundheitstipp</option><option>Notdienst-Ankündigung</option><option>Produktvorstellung</option>
+                    <option>Teamvorstellung</option><option>Phytothek / Naturheilkunde</option><option>Botendienst</option>
+                    <option>E-Rezept Service</option><option>Aktion / Angebot</option><option value="custom">Eigenes Thema…</option>
+                  </select>
+                </div>
+                <div class="form-group" id="instaCustomWrap" style="display:none"><label>Eigenes Thema</label><input type="text" id="instaCustom"></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+                  <div class="form-group"><label>Ton</label><select id="instaTon"><option>Freundlich & informativ</option><option>Professionell</option><option>Locker & persönlich</option></select></div>
+                  <div class="form-group"><label>Hashtags</label><select id="instaHashtags"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option></select></div>
+                </div>
+              </div>
+              <div class="social-panel" id="panel-fb">
+                <div class="form-group"><label>Thema / Anlass</label><input type="text" id="fbThema" placeholder="z. B. Pollenflug-Saison…"></div>
+                <div class="form-group"><label>Zusatzinfos</label><textarea id="fbInfo" rows="2" placeholder="Details…"></textarea></div>
+              </div>
+              <div class="social-panel" id="panel-nl">
+                <div class="form-group"><label>Hauptthema</label><input type="text" id="nlThema" placeholder="z. B. Frühjahrsmüdigkeit…"></div>
+                <div class="form-group"><label>Aktionen / Angebote</label><textarea id="nlAktionen" rows="2" placeholder="Aktuelle Angebote…"></textarea></div>
+              </div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-hd"><span class="funnel-num">3</span><span class="funnel-title">Text generieren</span></div>
+            <div class="funnel-body">
+              <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem">
+                <button class="btn btn-primary" onclick="genInsta()">✨ Instagram</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="genFb()">✨ Facebook</button>
+                <button class="btn btn-outline" style="border-color:var(--grey-border);color:var(--grey)" onclick="genNl()">✨ Newsletter</button>
+              </div>
+              <div id="instaOutput" class="ai-output" style="display:none"></div>
+              <button id="instaCopy" class="btn btn-outline copy-btn" style="display:none;border-color:var(--grey-border);color:var(--grey);margin-top:.5rem" onclick="copyText('instaOutput')">📋 Kopieren</button>
+              <div id="fbOutput" class="ai-output" style="display:none;margin-top:.75rem"></div>
+              <button id="fbCopy" class="btn btn-outline copy-btn" style="display:none;border-color:var(--grey-border);color:var(--grey);margin-top:.5rem" onclick="copyText('fbOutput')">📋 Kopieren</button>
+              <div id="nlOutput" class="ai-output" style="display:none;margin-top:.75rem"></div>
+              <button id="nlCopy" class="btn btn-outline copy-btn" style="display:none;border-color:var(--grey-border);color:var(--grey);margin-top:.5rem" onclick="copyText('nlOutput')">📋 Kopieren</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Live Preview -->
+      <div style="padding:1.5rem;background:#1a1a1a;display:flex;flex-direction:column;align-items:center;gap:1rem;position:sticky;top:64px;align-self:start;max-height:calc(100vh - 64px);overflow-y:auto">
+        <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.3);align-self:flex-start">Live-Vorschau</div>
+        <canvas id="previewCanvas" style="width:100%;border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,.5)"></canvas>
+        <div id="previewNote" style="font-size:.72rem;color:rgba(255,255,255,.3);text-align:center">Grafik wird beim Bearbeiten aktualisiert</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- DUPLICATE REMOVED --><div id="panel-ndPlan" style="display:none">
+</div>
+
+<style>
+/* ── ADMIN SIDEBAR ── */
+.admin-sidebar{background:#181818;border-right:1px solid #111;overflow-y:auto}
+.admin-nav-section{font-size:.62rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2);padding:.9rem 1.4rem .3rem}
+.admin-nav-item{display:flex;align-items:center;gap:.75rem;padding:.85rem 1.4rem;cursor:pointer;color:rgba(255,255,255,.38);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-left:3px solid transparent;transition:all .15s;user-select:none}
+.admin-nav-item:hover{color:rgba(255,255,255,.7);background:rgba(255,255,255,.04);border-left-color:rgba(192,57,43,.4)}
+.admin-nav-item.active{color:#fff;background:rgba(192,57,43,.18);border-left-color:var(--red)}
+.admin-nav-icon{font-size:1.05rem;flex-shrink:0;width:20px;text-align:center}
+.admin-nav-divider{height:1px;background:rgba(255,255,255,.07);margin:.5rem 1.4rem}
+/* ── FUNNEL STEPS ── */
+.mod-panel{display:none}.mod-panel.active{display:block}
+.mod-title{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:800;color:var(--grey);margin-bottom:1.25rem;padding-bottom:.6rem;border-bottom:2px solid var(--grey-border)}
+.funnel-step{margin-bottom:.9rem;border:1.5px solid var(--grey-border);border-radius:6px;overflow:hidden;transition:box-shadow .15s}
+.funnel-step:hover{box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.funnel-hd{display:flex;align-items:center;gap:.65rem;padding:.65rem 1rem;background:#f8f8f8;border-bottom:1.5px solid var(--grey-border)}
+.funnel-num{width:22px;height:22px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800;flex-shrink:0}
+.funnel-title{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.9px;color:var(--grey-mid)}
+.funnel-body{padding:1rem 1.1rem}
+/* ── SOCIAL SUB-TABS ── */
+.social-panel{display:none}.social-panel.active{display:block}
+.admin-sub-tab{display:inline-flex;align-items:center;padding:.42rem .9rem;font-size:.74rem;font-weight:700;cursor:pointer;color:var(--grey-mid);background:var(--grey-bg);border:1.5px solid var(--grey-border);border-radius:4px;transition:.15s}
+.admin-sub-tab:hover{background:#eee}
+.admin-sub-tab.active{background:var(--red);color:#fff;border-color:var(--red)}
+.pollen-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+.pollen-row label{min-width:100px;font-size:.82rem;font-weight:600;color:var(--grey-mid)}
+.pollen-row input[type=range]{flex:1;accent-color:var(--red)}
+.pollen-row span{min-width:60px;font-size:.78rem;font-weight:700;color:var(--grey)}
+.gt-item{display:flex;align-items:center;gap:.75rem;padding:.5rem .6rem;border-radius:3px;cursor:pointer;border:1.5px solid var(--grey-border);margin-bottom:.4rem;transition:.15s}
+.gt-item:hover{border-color:var(--red);background:rgba(192,57,43,.04)}
+.gt-item.selected{border-color:var(--red);background:rgba(192,57,43,.08)}
+.gt-item .gt-date{font-size:.72rem;font-weight:700;color:var(--red);min-width:50px}
+.gt-item .gt-name{font-size:.82rem;color:var(--grey)}
+</style>
+<script>
+// ── NAVIGATION ──
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  closeMobile();
+}
+function anchorTo(page,id){
+  showPage(page);
+  setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},50);
+  return false;
+}
+function toggleMobile(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open')}
+function toggleEl(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='A')showPage('admin');});
+
+// ── GESCHICHTE ──
+function scrollGs(e,id){
+  e.preventDefault();
+  const el=document.getElementById(id);
+  if(el){window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-130,behavior:'smooth'});}
+}
+window.addEventListener('scroll',()=>{
+  if(!document.getElementById('page-geschichte').classList.contains('active'))return;
+  const ids=['gs-1965','gs-1988','gs-2018','gs-2021','gs-heute'];
+  let cur=ids[0];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<160)cur=id;});
+  document.querySelectorAll('#gsStickyBar a').forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));
+});
+
+// ── REZEPT ──
+let rzStep=1;
+function rzGo(s){
+  document.getElementById('rzP'+rzStep).classList.remove('active');
+  for(let i=1;i<=5;i++){
+    document.getElementById('rzN'+i).className='rz-step-num'+(i<s?' done':i===s?' active':'');
+    if(i<5)document.getElementById('rzL'+i).className='rz-step-line'+(i<s?' done':'');
+  }
+  rzStep=s;
+  document.getElementById('rzP'+s).classList.add('active');
+  document.getElementById('page-rezept').scrollIntoView({block:'start'});
+}
+function selectMethod(m){
+  document.querySelectorAll('.method-card').forEach(c=>c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.getElementById('rzNext2').disabled=false;
+  document.getElementById('rzUploadArea').style.display=(m==='foto'||m==='upload')?'block':'none';
+  document.getElementById('rzErezeptArea').style.display=m==='erezept'?'block':'none';
+  document.getElementById('rzWaArea').style.display=m==='whatsapp'?'block':'none';
+}
+function previewFile(input){
+  if(!input.files[0])return;
+  document.getElementById('rzPreviewImg').src=URL.createObjectURL(input.files[0]);
+  document.getElementById('rzPreview').style.display='block';
+}
+function clearPreview(){document.getElementById('rzFile').value='';document.getElementById('rzPreview').style.display='none';}
+function rzReset(){document.getElementById('dsCheck').checked=false;document.getElementById('rzNext1').disabled=true;rzGo(1);}
+
+// ── ADMIN LOGIN ──
+function doLogin(){
+  const u=document.getElementById('loginUser').value,p=document.getElementById('loginPass').value;
+  if(u==='admin'&&p==='niklaspeter'){
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminDash').style.display='block';
+    document.getElementById('loginErr').style.display='none';
+    initAdmin();
+  } else document.getElementById('loginErr').style.display='block';
+}
+function doLogout(){
+  document.getElementById('adminLogin').style.display='block';
+  document.getElementById('adminDash').style.display='none';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+}
+function adminTab(btn,id){
+  btn.closest('.admin-tabs').querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  btn.closest('.admin-tabs').nextElementSibling && btn.closest('.mod-panel').querySelectorAll('.admin-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+}
+function modTab(btn,id){
+  document.querySelectorAll('.admin-nav-item').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.mod-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('mod-'+id).classList.add('active');
+  const previews={nd:ndLivePreview,pollen:pollenPreview,wetter:wetterPreview,gesundheitstage:gtPreview,tipp:tippPreview,reise:reisePreview,atem:atemPreview,feiertag:feiertagPreview};
+  if(previews[id])previews[id]();
+}
+function socialTab(btn,id){
+  btn.parentElement.querySelectorAll('.admin-sub-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  btn.closest('.funnel-body').querySelectorAll('.social-panel').forEach(p=>p.classList.remove('active'));
+  const p=document.getElementById('panel-'+id);if(p)p.classList.add('active');
+}
+function adminTab(btn,id){
+  btn.parentElement.querySelectorAll('.admin-sub-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const body=btn.closest('.funnel-body')||btn.closest('.mod-panel');
+  if(body)body.querySelectorAll('.admin-panel,.social-panel').forEach(p=>p.classList.remove('active'));
+  const p=document.getElementById('panel-'+id);if(p)p.classList.add('active');
+}
+
+// ── CANVAS HELPERS ──
+const PC=()=>document.getElementById('previewCanvas');
+function ctx2d(w,h){const c=PC();c.width=w;c.height=h;return c.getContext('2d');}
+function darkBg(ctx,w,h){ctx.fillStyle='#2C2C2C';ctx.fillRect(0,0,w,h);}
+function redHeader(ctx,w,h){ctx.fillStyle='#C0392B';ctx.fillRect(0,0,w,h);}
+function brand(ctx,w,h,size=20){
+  ctx.fillStyle='rgba(255,255,255,.3)';ctx.font=`${size}px sans-serif`;ctx.textAlign='center';
+  ctx.fillText('@apotheke_am_roemer · 06721 / 99 51 00',w/2,h-20);
+}
+function wrapText(ctx,text,x,y,maxW,lh){
+  const words=text.split(' ');let line='';
+  for(const w of words){
+    const test=line?line+' '+w:w;
+    if(ctx.measureText(test).width>maxW&&line){ctx.fillText(line,x,y);line=w;y+=lh;}
+    else line=test;
+  }
+  ctx.fillText(line,x,y);return y;
+}
+function downloadCanvas(name){
+  const a=document.createElement('a');a.href=PC().toDataURL('image/png');a.download=name+'.png';a.click();
+}
+function makeFullCanvas(drawFn,w,h){
+  const c=document.createElement('canvas');c.width=w;c.height=h;
+  drawFn(c.getContext('2d'),w,h);return c;
+}
+
+// ── NOTDIENST ──
+const DAYS=['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
+let ndData=DAYS.map(d=>({day:d,name:'',addr:'',time:'',tel:'',dist:''}));
+
+function initNdDays(){
+  const wrap=document.getElementById('ndDays');
+  if(wrap.children.length)return;
+  const now=new Date();
+  const kw=getKW(now);
+  document.getElementById('ndKw').value=`${now.getFullYear()}-W${String(kw).padStart(2,'0')}`;
+  ndData.forEach((d,i)=>{
+    const div=document.createElement('div');div.className='nd-day';
+    div.innerHTML=`<h4 style="margin:.45rem 0 .25rem;font-size:.75rem;color:var(--grey-mid);text-transform:uppercase;letter-spacing:.5px">${d.day}</h4>
+    <div class="form-row">
+      <input type="text" placeholder="Apotheke" id="nd-name-${i}" oninput="ndData[${i}].name=this.value;ndLivePreview()" style="flex:2">
+      <input type="text" placeholder="Straße, PLZ Ort" id="nd-addr-${i}" oninput="ndData[${i}].addr=this.value;ndLivePreview()" style="flex:2">
+      <input type="text" placeholder="Tel. 06721/…" id="nd-tel-${i}" oninput="ndData[${i}].tel=this.value;ndLivePreview()" style="flex:1.2">
+    </div>`;
+    wrap.appendChild(div);
+  });
+  ndLivePreview();
+}
+function getKW(d){const j=new Date(d.getFullYear(),0,1);return Math.ceil(((d-j)/86400000+j.getDay()+1)/7);}
+function openAponet(){
+  window.open('https://www.aponet.de/notdienstsuche/55411','_blank');
+  document.getElementById('ndPasteWrap').style.display='block';
+  setTimeout(()=>{const ta=document.getElementById('ndPasteText');if(ta)ta.focus();},400);
+}
+
+// ── ZENTRALER AKTUALISIEREN-BUTTON ──
+async function ndAktualisieren(btn){
+  const st=document.getElementById('ndImportStatus');
+  if(btn){btn.textContent='⏳ Lade…';btn.disabled=true;}
+
+  const kwVal=document.getElementById('ndKw')?.value||ndCurrentIsoWeek();
+  const week=kwVal.includes('-W')?kwVal:ndCurrentIsoWeek();
+  const kwNum=week.split('-W')[1];
+
+  // ── Stufe 1: eigene Cloudflare-API (funktioniert wenn auf der Website deployed) ──
+  const onWebsite=location.protocol!=='file:'&&location.hostname!=='localhost'&&location.hostname!=='127.0.0.1';
+  if(onWebsite){
+    if(st){st.textContent='⏳ Lade via Website-API…';st.style.color='#1565c0';}
+    try{
+      const r=await fetch(`/api/notdienst?week=${encodeURIComponent(week)}`,{signal:AbortSignal.timeout(15000)});
+      if(!r.ok)throw new Error(`HTTP ${r.status}`);
+      const data=await r.json();
+      if(!data.days?.length)throw new Error('Keine Daten');
+      const entries=data.days.map(d=>({
+        day:d.weekday||'',name:d.name||'',
+        addr:[d.street,d.plz&&d.city?d.plz+' '+d.city:''].filter(Boolean).join(', '),
+        tel:d.phone||'',
+        dist:d.drivingKm?d.drivingKm.toFixed(1)+' km Auto':(d.aerialKm?'~'+d.aerialKm.toFixed(1)+' km':'')
+      }));
+      ndFillEntries(entries);
+      if(st){st.textContent=`✓ ${entries.length} Notdienste geladen · KW ${kwNum}`;st.style.color='#2e7d32';}
+      if(btn){btn.textContent='🔄 Notdienste aktualisieren';btn.disabled=false;}
+      return;
+    }catch(e){/* weiter zu Stufe 2 */}
+  }
+
+  // ── Stufe 2: aponet.de direkt via CORS-Proxy (lokal / Fallback) ──
+  if(st){st.textContent='⏳ Verbinde mit aponet.de…';st.style.color='#1565c0';}
+  const apoUrl='https://www.aponet.de/notdienstsuche/55411';
+  const proxies=[
+    u=>`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
+    u=>`https://corsproxy.io/?${encodeURIComponent(u)}`
+  ];
+  for(const mkP of proxies){
+    try{
+      const r=await fetch(mkP(apoUrl),{signal:AbortSignal.timeout(10000)});
+      if(!r.ok)continue;
+      const raw=await r.text();
+      const html=raw.trim().startsWith('{')?JSON.parse(raw).contents||'':raw;
+      if(html.length<800)continue;
+      const entries=ndParseHtml(html);
+      if(entries.length>=2){
+        ndFillEntries(entries);
+        if(st){st.textContent=`✓ ${entries.length} Notdienste geladen`;st.style.color='#2e7d32';}
+        if(btn){btn.textContent='🔄 Notdienste aktualisieren';btn.disabled=false;}
+        return;
+      }
+    }catch(_){}
+  }
+
+  // ── Stufe 3: Paste-Workflow ──
+  if(st){st.innerHTML='ℹ️ Bitte manuell: aponet.de öffnen → <strong>Strg+A → Strg+C → Strg+V</strong> unten';st.style.color='var(--grey-mid)';}
+  openAponet();
+  if(btn){btn.textContent='🔄 Notdienste aktualisieren';btn.disabled=false;}
+}
+
+// ISO 8601 aktuelle Woche (Donnerstag-Regel)
+function ndCurrentIsoWeek(){
+  const now=new Date();
+  const thu=new Date(now);thu.setDate(now.getDate()-(now.getDay()||7)+4);
+  const yr=thu.getFullYear();
+  const jan4=new Date(yr,0,4);
+  const kw=Math.ceil(((thu-jan4)/86400000+(jan4.getDay()||7))/7);
+  return`${yr}-W${String(kw).padStart(2,'0')}`;
+}
+
+// ── HTML-PARSER (Proxy-Ergebnis) ──
+function ndParseHtml(html){
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const entries=[];
+  const containers=doc.querySelectorAll('article,[class*="result"],[class*="notdienst"],[class*="pharmacy"],[class*="apotheke"]');
+  containers.forEach(el=>{
+    const nameEl=el.querySelector('h2,h3,h4,strong,[class*="name"],[class*="title"]');
+    const name=(nameEl?.textContent||'').trim().replace(/\s+/g,' ');
+    if(!name||!/apotheke/i.test(name)||name.length>80)return;
+    const txt=el.textContent;
+    const tm=txt.match(/(\d{2}\.\d{2}\.\d{4})\s+um\s+(\d{2}:\d{2})\s+Uhr\s+bis\s+(\d{2}\.\d{2}\.\d{4})\s+um\s+(\d{2}:\d{2})\s+Uhr/i);
+    const time=tm?`${tm[1]} ${tm[2]} – ${tm[3]} ${tm[4]} Uhr`:'';
+    const plzM=txt.match(/(\d{5}\s+[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß\s\-]+?)(?=\s{2,}|Tel|Fax|\n|$)/);
+    const city=plzM?plzM[1].trim():'';
+    const strM=txt.match(/([A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß\-\.\s]+\s+\d+[a-z]?)/);
+    const street=strM?strM[1].trim():'';
+    const addr=(street&&city)?`${street}, ${city}`:(city||street);
+    const distM=txt.match(/([\d,]+)\s*km/i);
+    const dist=distM?distM[1].replace(',','.')+' km':'';
+    entries.push({name,addr,time,dist});
+  });
+  return entries.slice(0,7);
+}
+
+// ── REGEX-PARSER (kopierter aponet.de-Text, kein API-Key nötig) ──
+function ndSmartParse(text){
+  const lines=text.split('\n').map(l=>l.trim()).filter(Boolean);
+  const entries=[];
+  for(let i=0;i<lines.length&&entries.length<7;i++){
+    const line=lines[i];
+    if(!/apotheke/i.test(line)||line.length>80||/^tel/i.test(line)||/^\d{5}/.test(line))continue;
+    const e={name:line.replace(/\s+/g,' '),addr:'',time:'',dist:''};
+    for(let j=i+1;j<Math.min(i+14,lines.length);j++){
+      const nx=lines[j];
+      if(/apotheke/i.test(nx)&&nx.length<80&&j>i+1)break;
+      if(/notdienst vom/i.test(nx)){
+        const m=nx.match(/(\d{2}\.\d{2}\.\d{4})\s+um\s+(\d{2}:\d{2})\s+Uhr\s+bis\s+(\d{2}\.\d{2}\.\d{4})\s+um\s+(\d{2}:\d{2})\s+Uhr/i);
+        e.time=m?`${m[1]} ${m[2]} – ${m[3]} ${m[4]} Uhr`:nx.replace(/^Notdienst vom\s*/i,'').replace(/\.$/,'');
+      }else if(/^\d{5}\s+\S/.test(nx)){
+        const city=nx.replace(/\s+Tel:.*$/i,'').replace(/\s+Fax:.*$/i,'').trim();
+        const prev=lines[j-1]||'';
+        e.addr=(/\d/.test(prev)&&!/notdienst/i.test(prev)&&!/apotheke/i.test(prev)&&!/^tel/i.test(prev))?`${prev}, ${city}`:city;
+      }else if(/^tel[.:\s]/i.test(nx)||/^\+49|^0\d{3,4}/.test(nx)){
+        e.tel=nx.replace(/^Tel[.:\s]*/i,'').trim();
+      }
+    }
+    entries.push(e);
+  }
+  return entries;
+}
+
+// ── FELDER BEFÜLLEN ──
+function ndFillEntries(entries){
+  entries.forEach((e,i)=>{
+    if(i>=ndData.length)return;
+    ndData[i]={...ndData[i],name:e.name||'',addr:e.addr||'',time:e.time||'',tel:e.tel||'',dist:e.dist||''};
+    ['name','addr','tel'].forEach(k=>{const el=document.getElementById('nd-'+k+'-'+i);if(el)el.value=ndData[i][k]||'';});
+  });
+  ndLivePreview();
+}
+
+// ── PASTE-IMPORT (Regex-Parser, kein API-Key nötig) ──
+async function ndAiImport(){
+  const ta=document.getElementById('ndPasteText');
+  const text=(ta?.value||'').trim();
+  const st=document.getElementById('ndImportStatus');
+  if(!text){if(st){st.textContent='⚠️ Bitte Text einfügen';st.style.color='#c0392b';}return;}
+  if(st){st.textContent='⏳ Verarbeite…';st.style.color='#1565c0';}
+  // Regex-Parser zuerst (kein API-Key nötig)
+  const entries=ndSmartParse(text);
+  if(entries.length>=1){
+    ndFillEntries(entries);
+    ta.value='';
+    document.getElementById('ndPasteWrap').style.display='none';
+    if(st){st.textContent=`✓ ${entries.length} Notdienste importiert`;st.style.color='#2e7d32';}
+    return;
+  }
+  // Fallback: Claude API
+  const key=document.getElementById('apiKeyInput')?.value.trim()||localStorage.getItem('apoApiKey')||'';
+  if(!key){if(st){st.textContent='⚠️ Keine Einträge erkannt. API-Key hinterlegen für KI-Analyse.';st.style.color='#c0392b';}return;}
+  if(st){st.textContent='⏳ KI analysiert…';st.style.color='#1565c0';}
+  try{
+    const res=await callClaude(key,`Extrahiere den Apotheken-Notdienst-Wochenplan (Montag–Sonntag) aus diesem Text als JSON-Array:\n[{"day":"Montag","name":"Apotheke","addr":"Straße, PLZ Ort","tel":"06721/123"},...]\nNur JSON ausgeben.\n\n${text.slice(0,5000)}`);
+    const arr=JSON.parse(res.match(/\[[\s\S]*\]/)[0]);
+    ndFillEntries(arr);
+    ta.value='';document.getElementById('ndPasteWrap').style.display='none';
+    if(st){st.textContent=`✓ ${arr.length} Notdienste importiert`;st.style.color='#2e7d32';}
+  }catch(e){if(st){st.textContent='⚠️ '+e.message;st.style.color='#c0392b';}}
+}
+function ndLivePreview(){
+  const fmt=document.querySelector('input[name="ndFmt"]:checked')?.value||'week';
+  if(fmt==='week')ndDrawWeek(ctx2d(1080,1350),1080,1350);
+  else if(fmt==='story')ndDrawStory(ctx2d(1080,1920),1080,1920);
+  else ndDrawDay(ctx2d(1080,1080),1080,1080,0);
+}
+// ── NOTDIENST CANVAS – helles Wochenplan-Design ──
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+function ndLogoCircle(ctx,cx,cy,r,lines){
+  // Äußerer Ring
+  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
+  ctx.strokeStyle='#b07880';ctx.lineWidth=2;ctx.stroke();
+  // Innerer Ring
+  ctx.beginPath();ctx.arc(cx,cy,r-7,0,Math.PI*2);ctx.stroke();
+  // Buchstabe groß
+  ctx.fillStyle='#8b4050';ctx.font=`bold ${r*.55}px Georgia,serif`;ctx.textAlign='center';
+  ctx.fillText(lines[0],cx,cy+r*.2);
+  // Schrift unten
+  ctx.font=`bold ${r*.18}px sans-serif`;
+  lines.slice(1).forEach((l,i)=>ctx.fillText(l,cx,cy+r*.52+(i+1)*r*.22));
+  // Schrift oben
+  ctx.font=`bold ${r*.15}px sans-serif`;ctx.fillStyle='#9a5060';
+  ctx.fillText(lines[lines.length-1].toUpperCase(),cx,cy-r*.58);
+}
+function getDateFromKW(year,kw){
+  const jan4=new Date(year,0,4);
+  const d=new Date(jan4);d.setDate(jan4.getDate()-((jan4.getDay()||7)-1)+(kw-1)*7);return d;
+}
+function ndKwDateRange(){
+  const val=document.getElementById('ndKw')?.value||'';
+  if(!val||!val.includes('-W'))return'';
+  const[yr,wk]=val.split('-W');const kn=parseInt(wk);
+  const d1=getDateFromKW(parseInt(yr),kn);
+  const d2=new Date(d1);d2.setDate(d2.getDate()+6);
+  const f=d=>d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'});
+  return`KW ${kn}: ${f(d1)} – ${f(d2)}`;
+}
+
+function ndDrawWeek(ctx,w,h){
+  const P=30; // padding links/rechts
+  // Weißer Hintergrund
+  ctx.fillStyle='#faf9f8';ctx.fillRect(0,0,w,h);
+  // Äußerer Rahmen
+  ctx.strokeStyle='#d4c0c4';ctx.lineWidth=3;ctx.strokeRect(4,4,w-8,h-8);
+
+  // ── HEADER ──
+  const logoR=46;const logoY=78;
+  // Linkes Logo
+  ndLogoCircle(ctx,P+logoR+4,logoY,logoR,['R','AM RÖMER','APOTHEKE']);
+  // Rechtes Logo
+  ndLogoCircle(ctx,w-P-logoR-4,logoY,logoR,['N','APOTHEKE','NAHE']);
+  // Titel (Mitte)
+  const titleX=w/2;
+  ctx.fillStyle='#1a1010';ctx.textAlign='center';
+  ctx.font=`italic bold 36px Georgia,serif`;ctx.fillText('Apotheken-Notdienst',titleX,52);
+  ctx.font=`italic bold 28px Georgia,serif`;ctx.fillText('für Bingen und Umgebung',titleX,88);
+  // Trennlinie
+  ctx.strokeStyle='#d4c0c4';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(P,130);ctx.lineTo(w-P,130);ctx.stroke();
+
+  // ── KW-BANNER ──
+  const kwY=140;const kwH=70;
+  ctx.fillStyle='#f2dde0';
+  roundRect(ctx,P,kwY,w-P*2,kwH,6);ctx.fill();
+  const kwStr=ndKwDateRange()||'Aktuelle Woche';
+  ctx.fillStyle='#7a3040';ctx.font='bold 26px sans-serif';ctx.textAlign='center';
+  ctx.fillText(kwStr,w/2,kwY+27);
+  ctx.fillStyle='#9a5060';ctx.font='16px sans-serif';
+  ctx.fillText('Notdienst jeweils von 08:30 bis 08:30 Uhr des Folgetages.',w/2,kwY+52);
+
+  // ── EINTRAGS-KARTEN ──
+  const listY=kwY+kwH+16;
+  const footH=80;
+  const available=h-listY-footH-8;
+  const gap=5;
+  const rowH=Math.floor((available-(6*gap))/7);
+  const dayW=46;
+  const borderC='#d4c0c4';
+
+  DAYS.forEach((dayName,i)=>{
+    const d=ndData[i]||{day:dayName,name:'',addr:'',tel:''};
+    const y=listY+i*(rowH+gap);
+    const cx=P;const cw=w-P*2;
+
+    // Schatten
+    ctx.fillStyle='rgba(180,145,150,.13)';
+    roundRect(ctx,cx+2,y+2,cw,rowH,5);ctx.fill();
+    // Karten-Hintergrund
+    ctx.fillStyle='#ffffff';
+    roundRect(ctx,cx,y,cw,rowH,5);ctx.fill();
+    ctx.strokeStyle=borderC;ctx.lineWidth=1.5;
+    roundRect(ctx,cx,y,cw,rowH,5);ctx.stroke();
+
+    // Tages-Spalte (links, rosé)
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx+5,y);ctx.lineTo(cx+dayW,y);ctx.lineTo(cx+dayW,y+rowH);
+    ctx.lineTo(cx+5,y+rowH);ctx.quadraticCurveTo(cx,y+rowH,cx,y+rowH-5);
+    ctx.lineTo(cx,y+5);ctx.quadraticCurveTo(cx,y,cx+5,y);ctx.closePath();
+    ctx.fillStyle='#f5e8ea';ctx.fill();
+    ctx.restore();
+    // Trennlinie Tag/Inhalt
+    ctx.strokeStyle=borderC;ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(cx+dayW,y+4);ctx.lineTo(cx+dayW,y+rowH-4);ctx.stroke();
+
+    // Tagesname rotiert
+    ctx.save();
+    ctx.fillStyle='#8b4050';
+    ctx.font=`bold ${Math.min(rowH*.16,15)}px sans-serif`;ctx.textAlign='center';
+    ctx.translate(cx+dayW/2,y+rowH/2);ctx.rotate(-Math.PI/2);
+    ctx.fillText(dayName.toUpperCase(),0,5);
+    ctx.restore();
+
+    // Inhalt
+    const ix=cx+dayW+18;
+    const nfs=Math.min(rowH*.24,21);
+    const dfs=Math.min(rowH*.18,16);
+    // Name
+    ctx.fillStyle='#1a1010';ctx.font=`bold ${nfs}px sans-serif`;ctx.textAlign='left';
+    ctx.fillText(d.name||'–',ix,y+10+nfs);
+    // Adresse mit Pin
+    if(d.addr){
+      ctx.fillStyle='#444';ctx.font=`${dfs}px sans-serif`;
+      ctx.fillText('\u{1F4CD} '+d.addr,ix+2,y+12+nfs+dfs+2);
+    }
+    // Tel mit Hörer
+    if(d.tel){
+      ctx.fillStyle='#444';ctx.font=`${dfs}px sans-serif`;
+      ctx.fillText('\u{1F4DE} '+d.tel,ix+2,y+14+nfs+dfs*2+4);
+    }
+    // Entfernung-Chip rechts oben
+    if(d.dist){
+      const bfs=Math.min(dfs*.85,13);
+      ctx.font=`bold ${bfs}px sans-serif`;ctx.textAlign='right';
+      const bw=ctx.measureText(d.dist).width+16;const bh=bfs+8;
+      const bx=cx+cw-8-bw;const by=y+8;
+      ctx.fillStyle='#f2dde0';roundRect(ctx,bx,by,bw,bh,4);ctx.fill();
+      ctx.strokeStyle='#d4b0b8';ctx.lineWidth=1;roundRect(ctx,bx,by,bw,bh,4);ctx.stroke();
+      ctx.fillStyle='#7a3040';ctx.fillText(d.dist,bx+bw-6,by+bfs+1);
+    }
+  });
+
+  // ── FOOTER ──
+  const footY=h-footH+2;
+  ctx.fillStyle='#f5efef';
+  roundRect(ctx,P,footY,w-P*2,footH-8,5);ctx.fill();
+  ctx.strokeStyle=borderC;ctx.lineWidth=1;
+  roundRect(ctx,P,footY,w-P*2,footH-8,5);ctx.stroke();
+
+  ctx.fillStyle='#999';ctx.font='13px sans-serif';ctx.textAlign='left';
+  ctx.fillText('Ein Service der',P+18,footY+22);
+  // Linke Spalte
+  ctx.fillStyle='#1a1010';ctx.font='bold 14px sans-serif';ctx.textAlign='center';
+  ctx.fillText('Apotheke am Römer',w/2-130,footY+20);
+  ctx.fillStyle='#666';ctx.font='12px sans-serif';
+  ctx.fillText('info@apotheke-am-roemer.de',w/2-130,footY+38);
+  // Rechte Spalte
+  ctx.fillStyle='#1a1010';ctx.font='bold 14px sans-serif';
+  ctx.fillText('Nahe-Apotheke',w/2+100,footY+20);
+  ctx.fillStyle='#666';ctx.font='12px sans-serif';
+  ctx.fillText('info@nahe-apotheke.de',w/2+100,footY+38);
+}
+
+function ndDrawStory(ctx,w,h){ndDrawWeek(ctx,w,h);}
+function ndDrawDay(ctx,w,h,i){
+  const d=ndData[i]||{day:DAYS[i],name:'–',addr:'',tel:''};
+  // Heller Hintergrund
+  ctx.fillStyle='#faf9f8';ctx.fillRect(0,0,w,h);
+  ctx.strokeStyle='#d4c0c4';ctx.lineWidth=3;ctx.strokeRect(4,4,w-8,h-8);
+  // Roser Header-Streifen
+  ctx.fillStyle='#f2dde0';ctx.fillRect(0,0,w,160);
+  ctx.fillStyle='#7a3040';ctx.font='italic bold 40px Georgia,serif';ctx.textAlign='center';
+  ctx.fillText('Notdienst-Apotheke',w/2,60);
+  ctx.fillStyle='#8b4050';ctx.font='bold 52px sans-serif';ctx.fillText(d.day.toUpperCase(),w/2,118);
+  // Trennlinie
+  ctx.strokeStyle='#d4c0c4';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(80,175);ctx.lineTo(w-80,175);ctx.stroke();
+  // Karte
+  ctx.fillStyle='#fff';ctx.strokeStyle='#d4c0c4';ctx.lineWidth=2;
+  roundRect(ctx,60,200,w-120,340,8);ctx.fill();ctx.stroke();
+  ctx.fillStyle='#1a1010';ctx.font='bold 38px sans-serif';ctx.textAlign='center';
+  ctx.fillText(d.name||'–',w/2,278);
+  ctx.fillStyle='#555';ctx.font='22px sans-serif';
+  if(d.addr)ctx.fillText('\u{1F4CD} '+d.addr,w/2,330);
+  if(d.tel)ctx.fillText('\u{1F4DE} '+d.tel,w/2,370);
+  // Footer
+  ctx.fillStyle='#999';ctx.font='16px sans-serif';
+  ctx.fillText('Apotheke am Römer · Nahe-Apotheke',w/2,h-40);
+}
+function ndDownloadCurrent(){
+  const fmt=document.querySelector('input[name="ndFmt"]:checked')?.value||'week';
+  downloadCanvas('Notdienst-'+fmt);
+}
+function ndDownloadAll(){
+  const fmts=[{n:'Woche',fn:(c,w,h)=>ndDrawWeek(c,w,h),w:1080,h:1350},{n:'Story',fn:(c,w,h)=>ndDrawStory(c,w,h),w:1080,h:1920}];
+  fmts.forEach(f=>{const c=makeFullCanvas(f.fn,f.w,f.h);const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='Notdienst-'+f.n+'.png';a.click();});
+  ndData.forEach((_,i)=>{
+    const c=makeFullCanvas((ctx,w,h)=>ndDrawDay(ctx,w,h,i),1080,1080);
+    const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='Notdienst-'+(ndData[i].name||'Nr'+(i+1))+'.png';a.click();
+  });
+}
+
+// ── POLLENFLUG ──
+const POLLEN=[
+  {name:'Birke',emoji:'🌳',color:'#8B6914'},
+  {name:'Gräser',emoji:'🌾',color:'#5A7A2B'},
+  {name:'Hasel',emoji:'🌰',color:'#7A4F2B'},
+  {name:'Erle',emoji:'🌿',color:'#2B6B4A'},
+  {name:'Beifuß',emoji:'🌱',color:'#4A7A2B'},
+  {name:'Roggen',emoji:'🌾',color:'#B8860B'},
+  {name:'Wegerich',emoji:'🌿',color:'#3A6B3A'},
+  {name:'Esche',emoji:'🍃',color:'#4B7A4B'},
+];
+const POLLEN_LEVELS=['Keine','Gering','Mittel','Hoch','Sehr hoch'];
+const POLLEN_COLORS=['#555','#4CAF50','#FFC107','#FF5722','#C0392B'];
+let pollenVals=POLLEN.map(()=>0);
+
+function initPollen(){
+  const wrap=document.getElementById('pollenSliders');
+  if(wrap.children.length)return;
+  POLLEN.forEach((p,i)=>{
+    const row=document.createElement('div');row.className='pollen-row';
+    row.innerHTML=`<label>${p.emoji} ${p.name}</label>
+      <input type="range" min="0" max="4" value="0" oninput="pollenVals[${i}]=+this.value;this.nextElementSibling.textContent=POLLEN_LEVELS[+this.value];this.nextElementSibling.style.color=POLLEN_COLORS[+this.value];pollenPreview()">
+      <span style="color:#555">Keine</span>`;
+    wrap.appendChild(row);
+  });
+  pollenPreview();
+}
+function pollenPreview(){
+  const ctx=ctx2d(1080,1080),w=1080,h=1080;
+  darkBg(ctx,w,h);redHeader(ctx,w,130);
+  ctx.fillStyle='#fff';ctx.font='bold 52px sans-serif';ctx.textAlign='center';ctx.fillText('POLLENFLUG',w/2,80);
+  ctx.font='26px sans-serif';ctx.fillStyle='rgba(255,255,255,.55)';ctx.fillText('Region Bingen · Rheinhessen',w/2,118);
+  const bw=100,bmax=600,y0=170,rowH=105;
+  POLLEN.forEach((p,i)=>{
+    const y=y0+i*rowH,val=pollenVals[i],pct=val/4;
+    ctx.fillStyle='rgba(255,255,255,.85)';ctx.font='bold 24px sans-serif';ctx.textAlign='left';ctx.fillText(p.emoji+' '+p.name,50,y+36);
+    ctx.fillStyle='rgba(255,255,255,.1)';ctx.fillRect(260,y+14,bmax,28);
+    ctx.fillStyle=POLLEN_COLORS[val];ctx.fillRect(260,y+14,bmax*pct,28);
+    ctx.fillStyle=POLLEN_COLORS[val];ctx.font='bold 22px sans-serif';ctx.textAlign='left';
+    ctx.fillText(POLLEN_LEVELS[val],270+bmax*pct+8,y+34);
+  });
+  brand(ctx,w,h);
+}
+function pollenDownload(fmt){
+  const isStory=fmt==='story';
+  const c=makeFullCanvas((ctx,w,h)=>{
+    darkBg(ctx,w,h);redHeader(ctx,w,isStory?160:130);
+    ctx.fillStyle='#fff';ctx.font=`bold ${isStory?56:52}px sans-serif`;ctx.textAlign='center';ctx.fillText('POLLENFLUG',w/2,isStory?100:80);
+    ctx.font='26px sans-serif';ctx.fillStyle='rgba(255,255,255,.55)';ctx.fillText('Region Bingen · Rheinhessen',w/2,isStory?145:118);
+    const bmax=isStory?700:600,y0=isStory?185:165,rowH=isStory?210:105;
+    POLLEN.forEach((p,i)=>{
+      const y=y0+i*rowH,pct=pollenVals[i]/4;
+      ctx.fillStyle='rgba(255,255,255,.85)';ctx.font=`bold ${isStory?30:24}px sans-serif`;ctx.textAlign='left';ctx.fillText(p.emoji+' '+p.name,50,y+(isStory?45:36));
+      ctx.fillStyle='rgba(255,255,255,.1)';ctx.fillRect(isStory?50:260,y+(isStory?60:14),bmax,isStory?36:28);
+      ctx.fillStyle=POLLEN_COLORS[pollenVals[i]];ctx.fillRect(isStory?50:260,y+(isStory?60:14),bmax*pct,isStory?36:28);
+      ctx.fillStyle=POLLEN_COLORS[pollenVals[i]];ctx.font=`bold ${isStory?26:22}px sans-serif`;ctx.textAlign='left';
+      ctx.fillText(POLLEN_LEVELS[pollenVals[i]],(isStory?50:270)+bmax*pct+8,y+(isStory?88:34));
+    });
+    brand(ctx,w,h);
+  },isStory?1080:1080,isStory?1920:1080);
+  const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='Pollenflug-'+fmt+'.png';a.click();
+}
+
+// ── WETTER ──
+async function loadWetter(){
+  document.getElementById('wetterStatus').textContent='Lade Wetterdaten für Bingen...';
+  try{
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.97&longitude=7.90&current=temperature_2m,weathercode,windspeed_10m&daily=uv_index_max,precipitation_sum&timezone=Europe/Berlin&forecast_days=1');
+    const d=await r.json();
+    const t=Math.round(d.current.temperature_2m);
+    const uv=Math.round(d.daily.uv_index_max[0]);
+    const rain=Math.round(d.daily.precipitation_sum[0]*10)/10;
+    const code=d.current.weathercode;
+    const lage=code<=1?'Sonnig':code<=3?'Leicht bewölkt':code<=49?'Bewölkt':code<=67?'Regnerisch':'Gewitter';
+    document.getElementById('wTemp').value=t;
+    document.getElementById('wUV').value=uv;
+    document.getElementById('wRegen').value=rain;
+    document.getElementById('wLage').value=lage;
+    const tipps={Sonnig:'Sonnencreme LSF 50+ nicht vergessen! Ausreichend trinken – mind. 2 Liter.',
+      'Leicht bewölkt':'Guter Tag für Aktivitäten. UV-Schutz nicht vergessen.',
+      Bewölkt:'Auch bei Bewölkung UV-Strahlung beachten.',
+      Regnerisch:'Nasse Kleidung schnell wechseln – Erkältungsgefahr. Vitamin D supplementieren.',
+      Gewitter:'Aufenthalt im Freien meiden. Bei Allergikern erhöhte Schimmelpilz-Belastung möglich.'};
+    document.getElementById('wTipp').value=tipps[lage]||'Bleiben Sie gesund!';
+    document.getElementById('wetterStatus').textContent=`✓ Geladen: ${t}°C · UV ${uv} · ${rain}mm · ${lage}`;
+    wetterPreview();
+  }catch(e){document.getElementById('wetterStatus').textContent='Fehler beim Laden. Manuell eingeben.';}
+}
+const WETTER_ICONS={Sonnig:'☀️','Leicht bewölkt':'⛅',Bewölkt:'☁️',Regnerisch:'🌧️',Gewitter:'⛈️',Schnee:'❄️'};
+function wetterPreview(){
+  const t=document.getElementById('wTemp')?.value||'–';
+  const uv=document.getElementById('wUV')?.value||'–';
+  const lage=document.getElementById('wLage')?.value||'Sonnig';
+  const tipp=document.getElementById('wTipp')?.value||'';
+  const icon=WETTER_ICONS[lage]||'🌤️';
+  const ctx=ctx2d(1080,1080),w=1080,h=1080;
+  darkBg(ctx,w,h);
+  ctx.fillStyle='#C0392B';ctx.fillRect(0,0,w,10);ctx.fillRect(0,h-10,w,10);
+  ctx.font='120px sans-serif';ctx.textAlign='center';ctx.fillText(icon,w/2,220);
+  ctx.fillStyle='rgba(255,255,255,.4)';ctx.font='bold 22px sans-serif';ctx.fillText('WETTER HEUTE · BINGEN AM RHEIN',w/2,270);
+  ctx.fillStyle='#fff';ctx.font='bold 110px sans-serif';ctx.fillText(t+'°C',w/2,420);
+  ctx.fillStyle='rgba(255,255,255,.6)';ctx.font='bold 34px sans-serif';ctx.fillText(lage,w/2,480);
+  ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(100,520,w-200,2);
+  ctx.fillStyle='#C0392B';ctx.font='bold 26px sans-serif';ctx.fillText('APOTHEKEN-TIPP',w/2,575);
+  ctx.fillStyle='rgba(255,255,255,.85)';ctx.font='24px sans-serif';
+  wrapText(ctx,tipp,w/2,620,700,38);
+  ctx.fillStyle='rgba(255,255,255,.3)';ctx.font='bold 22px sans-serif';ctx.fillText(`UV-Index: ${uv}`,w/2,900);
+  brand(ctx,w,h);
+}
+function wetterDownload(fmt){
+  const isStory=fmt==='story';
+  if(!isStory){downloadCanvas('Wetter-Beitrag');return;}
+  const c=makeFullCanvas((ctx,w,h)=>{
+    const t=document.getElementById('wTemp')?.value||'–';
+    const lage=document.getElementById('wLage')?.value||'Sonnig';
+    const tipp=document.getElementById('wTipp')?.value||'';
+    const uv=document.getElementById('wUV')?.value||'–';
+    darkBg(ctx,w,h);ctx.fillStyle='#C0392B';ctx.fillRect(0,0,w,10);ctx.fillRect(0,h-10,w,10);
+    ctx.font='160px sans-serif';ctx.textAlign='center';ctx.fillText(WETTER_ICONS[lage]||'🌤️',w/2,380);
+    ctx.fillStyle='rgba(255,255,255,.4)';ctx.font='bold 28px sans-serif';ctx.fillText('WETTER HEUTE · BINGEN',w/2,450);
+    ctx.fillStyle='#fff';ctx.font='bold 140px sans-serif';ctx.fillText(t+'°C',w/2,650);
+    ctx.fillStyle='rgba(255,255,255,.6)';ctx.font='bold 44px sans-serif';ctx.fillText(lage,w/2,720);
+    ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(80,790,w-160,2);
+    ctx.fillStyle='#C0392B';ctx.font='bold 36px sans-serif';ctx.fillText('APOTHEKEN-TIPP',w/2,860);
+    ctx.fillStyle='rgba(255,255,255,.85)';ctx.font='32px sans-serif';
+    wrapText(ctx,tipp,w/2,920,800,48);
+    ctx.fillStyle='rgba(255,255,255,.3)';ctx.font='bold 28px sans-serif';ctx.fillText('UV-Index: '+uv,w/2,1700);
+    brand(ctx,w,h,26);
+  },1080,1920);
+  const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='Wetter-Story.png';a.click();
+}
+
+// ── GESUNDHEITSTAGE ──
+const GT_DATA=[
+  {d:'04.02',n:'Weltkrebstag'},
+  {d:'14.02',n:'Valentinstag – Herzgesundheit'},
+  {d:'24.03',n:'Welt-Tuberkulose-Tag'},
+  {d:'07.04',n:'Welt-Gesundheitstag'},
+  {d:'17.04',n:'Welt-Hämophilie-Tag'},
+  {d:'25.04',n:'Welt-Malaria-Tag'},
+  {d:'05.05',n:'Welt-Hand-Hygiene-Tag'},
+  {d:'08.05',n:'Weltrotkreuztag'},
+  {d:'17.05',n:'Welt-Bluthochdruck-Tag'},
+  {d:'25.05',n:'Welt-Schilddrüsen-Tag'},
+  {d:'31.05',n:'Welt-Nichtraucher-Tag'},
+  {d:'27.06',n:'Welt-Diabetestag'},
+  {d:'28.07',n:'Welt-Hepatitis-Tag'},
+  {d:'10.09',n:'Welt-Suizid-Präventionstag'},
+  {d:'21.09',n:'Welt-Alzheimer-Tag'},
+  {d:'26.09',n:'Welt-Verhütungstag'},
+  {d:'10.10',n:'Welt-Psychischer-Gesundheitstag'},
+  {d:'20.10',n:'Welt-Osteoporose-Tag'},
+  {d:'14.11',n:'Welt-Diabetestag'},
+  {d:'17.11',n:'Welt-Frühgeborenen-Tag'},
+  {d:'01.12',n:'Welt-Aids-Tag'},
+];
+let gtSelected=null;
+function initGesundheitstage(){
+  const wrap=document.getElementById('gesundheitstageListe');
+  if(wrap.children.length)return;
+  GT_DATA.forEach((g,i)=>{
+    const div=document.createElement('div');div.className='gt-item';
+    div.innerHTML=`<span class="gt-date">${g.d}</span><span class="gt-name">${g.n}</span>`;
+    div.onclick=()=>{
+      document.querySelectorAll('.gt-item').forEach(el=>el.classList.remove('selected'));
+      div.classList.add('selected');gtSelected=g;
+      document.getElementById('gtCustomText').value=g.n;gtPreview();
+    };
+    wrap.appendChild(div);
+  });
+  gtPreview();
+}
+function gtPreview(){
+  const text=document.getElementById('gtCustomText')?.value||gtSelected?.n||'Welt-Gesundheitstag';
+  const date=gtSelected?.d||'';
+  const ctx=ctx2d(1080,1080),w=1080,h=1080;
+  darkBg(ctx,w,h);redHeader(ctx,w,140);
+  ctx.fillStyle='#fff';ctx.font='bold 48px sans-serif';ctx.textAlign='center';ctx.fillText('🎗️ GESUNDHEITSTAG',w/2,85);
+  ctx.font='28px sans-serif';ctx.fillStyle='rgba(255,255,255,.55)';if(date)ctx.fillText(date+' · 2025',w/2,125);
+  ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(80,360,w-160,2);
+  ctx.fillStyle='#fff';ctx.font='bold 52px sans-serif';ctx.textAlign='center';
+  wrapText(ctx,text,w/2,440,860,64);
+  ctx.fillStyle='rgba(255,255,255,.5)';ctx.font='26px sans-serif';
+  ctx.fillText('Informiert durch Ihre Apotheke am Römer',w/2,780);
+  brand(ctx,w,h);
+}
+function gtDownload(fmt){
+  const isStory=fmt==='story';
+  if(!isStory){downloadCanvas('Gesundheitstag');return;}
+  const c=makeFullCanvas((ctx,w,h)=>{
+    const text=document.getElementById('gtCustomText')?.value||gtSelected?.n||'Welt-Gesundheitstag';
+    darkBg(ctx,w,h);redHeader(ctx,w,180);
+    ctx.fillStyle='#fff';ctx.font='bold 60px sans-serif';ctx.textAlign='center';ctx.fillText('🎗️ GESUNDHEITSTAG',w/2,110);
+    ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(80,600,w-160,2);
+    ctx.fillStyle='#fff';ctx.font='bold 64px sans-serif';ctx.textAlign='center';
+    wrapText(ctx,text,w/2,720,860,78);
+    ctx.fillStyle='rgba(255,255,255,.5)';ctx.font='32px sans-serif';
+    ctx.fillText('Ihre Apotheke am Römer',w/2,1700);
+    brand(ctx,w,h,28);
+  },1080,1920);
+  const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='Gesundheitstag-Story.png';a.click();
+}
+
+// ── APOTHEKENTIPP ──
+const TIPPS={
+  'Sommer & Hitze':['Täglich mind. 2-3 Liter trinken – am besten Wasser oder ungesüßte Tees.','Sonnencreme mit LSF 50+ alle 2 Stunden neu auftragen.','Hitze kann Medikamente beeinflussen – kühl lagern!'],
+  'Winter & Erkältung':['Vitamin C & Zink stärken das Immunsystem in der kalten Jahreszeit.','Regelmäßiges Händewaschen ist der beste Schutz vor Erkältungsviren.','Inhalationen mit Kamille oder Thymian bei verstopfter Nase.'],
+  'Allergie & Pollen':['Pollenkalender im Blick behalten und Antihistaminika rechtzeitig starten.','Wäsche nicht draußen trocknen bei hoher Pollenbelastung.','Nasenduschen spülen Pollen aus den Atemwegen.'],
+  'Haut & Pflege':['Rückfettende Cremes nach dem Waschen auftragen – besonders im Winter.','Lichtschutz ist ganzjährig wichtig, nicht nur im Sommer.','Bei Hautproblemen gerne persönlich beraten lassen!'],
+  'Verdauung':['Probiotische Lebensmittel unterstützen eine gesunde Darmflora.','Ausreichend Ballaststoffe und Bewegung fördern die Verdauung.','Bei anhaltenden Beschwerden immer ärztlichen Rat suchen.'],
+  'Schlaf & Stress':['Feste Schlafenszeiten helfen dem Körper, zur Ruhe zu kommen.','Baldrian und Passionsblume als sanfte Einschlafhilfe.','Magnesium kann helfen, Muskeln zu entspannen und besser zu schlafen.'],
+  'Vitamine & Nahrungsergänzung':['Vitamin D – der Sonnenvitamin-Mangel betrifft viele im Winter.','Omega-3-Fettsäuren unterstützen Herz und Gehirn.','Lassen Sie Ihren Vitamin-Spiegel beim Arzt bestimmen.'],
+  'Reisemedizin':['Reiseapotheke rechtzeitig zusammenstellen – wir beraten Sie gerne!','Bei Reisen in tropische Länder: Impfschutz prüfen.','Reisekrankheit? Ingwerkapseln oder spezielle Pflaster helfen vielen.'],
+};
+function tippRandom(){
+  const kat=document.getElementById('tippKat').value;
+  const arr=TIPPS[kat]||[];
+  if(arr.length)document.getElementById('tippText').value=arr[Math.floor(Math.random()*arr.length)];
+  tippPreview();
+}
+function tippPreview(){
+  const text=document.getElementById('tippText')?.value||'Ihr Gesundheitstipp der Woche';
+  const kat=document.getElementById('tippKat')?.value||'';
+  const ctx=ctx2d(1080,1080),w=1080,h=1080;
+  darkBg(ctx,w,h);redHeader(ctx,w,130);
+  ctx.fillStyle='#fff';ctx.font='bold 44px sans-serif';ctx.textAlign='center';ctx.fillText('💡 APOTHEKENTIPP',w/2,80);
+  ctx.font='24px sans-serif';ctx.fillStyle='rgba(255,255,255,.5)';ctx.fillText(kat,w/2,116);
+  ctx.fillStyle='rgba(255,255,255,.12)';ctx.fillRect(80,350,w-160,2);
+  ctx.fillStyle='#fff';ctx.font='32px sans-serif';ctx.textAlign='center';
+  wrapText(ctx,text,w/2,420,820,48);
+  ctx.fillStyle='rgba(255,255,255,.45)';ctx.font='24px sans-serif';
+  ctx.fillText('Ihre Apotheke am Römer · Bingen',w/2,820);
+  brand(ctx,w,h);
+}
+function tippDownload(fmt){
+  const isStory=fmt==='story';
+  if(!isStory){downloadCanvas('Apothekentipp');return;}
+  const c=makeFullCanvas((ctx,w,h)=>{
+    const text=document.getElementById('tippText')?.value||'Ihr Gesundheitstipp';
+    const kat=document.getElementById('tippKat')?.value||'';
+    darkBg(ctx,w,h);redHeader(ctx,w,180);
+    ctx.fillStyle='#fff';ctx.font='bold 56px sans-serif';ctx.textAlign='center';ctx.fillText('💡 APOTHEKENTIPP',w/2,110);
+    ctx.font='30px sans-serif';ctx.fillStyle='rgba(255,255,255,.5)';ctx.fillText(kat,w/2,155);
+    ctx.fillStyle='rgba(255,255,255,.12)';ctx.fillRect(80,600,w-160,2);
+    ctx.fillStyle='#fff';ctx.font='38px sans-serif';ctx.textAlign='center';
+    wrapText(ctx,text,w/2,700,820,56);
+    brand(ctx,w,h,28);
+  },1080,1920);
+  const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='Apothekentipp-Story.png';a.click();
+}
+
+// ── REISEAPOTHEKE ──
+const REISE_LISTEN={
+  strand:'Sonnencreme LSF 50+\nAftersun / Aloe Vera\nInsektenschutz\nAntihistaminikum (Allergie)\nSchmerzmittel\nDurchfallmittel\nElektrolyte\nPflaster & Wundversorgung\nOhrenstöpsel & Schlafmaske',
+  berge:'Schmerzmittel & Fieberthermometer\nHöhenkrankheit-Prävention\nKältesalbe & Wärmepflaster\nElastische Binde\nBlasenpflaster\nSonnenschutz (Höhen-UV!)\nLippenpflege mit Lichtschutz\nInhalatoren (Asthma)',
+  tropen:'Malaria-Prophylaxe (nach Arzt)\nImpfschutz prüfen!\nBreitband-Insektenschutz DEET\nDurchfallmittel & Elektrolyte\nWasserreinigungstabletten\nBreitband-Antibiotikum (n. Arzt)\nSonnen- & Hitzeschutz\nReiseapotheke komplett',
+  city:'Pflaster & kleines Verbandsmaterial\nSchmerzmittel\nMagenmittel\nAntihistaminikum\nAugentropfen (trockene Augen)\nReisekrankheitsmittel\npersönliche Medikamente',
+};
+document.addEventListener('DOMContentLoaded',()=>{
+  const sel=document.getElementById('reiseZiel');
+  if(sel&&!document.getElementById('reiseListe').value){
+    document.getElementById('reiseListe').value=REISE_LISTEN[sel.value]||'';
+  }
+});
+function reisePreview(){
+  const ziel=document.getElementById('reiseZiel')?.value||'strand';
+  const liste=document.getElementById('reiseListe')?.value||REISE_LISTEN[ziel]||'';
+  if(document.getElementById('reiseListe')&&!document.getElementById('reiseListe').value){
+    document.getElementById('reiseListe').value=REISE_LISTEN[ziel]||'';
+  }
+  const items=liste.split('\n').filter(Boolean);
+  const ICONS={strand:'🏖️',berge:'🏔️',tropen:'🌴',city:'🏙️'};
+  const NAMES={strand:'Strand & Sommer',berge:'Berge & Wandern',tropen:'Tropen & Fernreise',city:'Städtereise'};
+  const ctx=ctx2d(1080,1080),w=1080,h=1080;
+  darkBg(ctx,w,h);redHeader(ctx,w,140);
+  ctx.fillStyle='#fff';ctx.font='bold 42px sans-serif';ctx.textAlign='center';
+  ctx.fillText(ICONS[ziel]+' REISEAPOTHEKE',w/2,82);
+  ctx.font='26px sans-serif';ctx.fillStyle='rgba(255,255,255,.55)';ctx.fillText(NAMES[ziel],w/2,118);
+  const maxItems=Math.min(items.length,9);
+  const startY=175,rowH=(h-220)/maxItems;
+  items.slice(0,maxItems).forEach((item,i)=>{
+    const y=startY+i*rowH;
+    if(i%2===0){ctx.fillStyle='rgba(255,255,255,.04)';ctx.fillRect(30,y,w-60,rowH-4);}
+    ctx.fillStyle='#C0392B';ctx.font='bold 22px sans-serif';ctx.textAlign='left';ctx.fillText('✓',55,y+rowH*0.65);
+    ctx.fillStyle='#fff';ctx.font='26px sans-serif';ctx.fillText(item,90,y+rowH*0.65);
+  });
+  if(items.length>maxItems){ctx.fillStyle='rgba(255,255,255,.4)';ctx.font='22px sans-serif';ctx.textAlign='center';ctx.fillText('+ '+(items.length-maxItems)+' weitere Artikel',w/2,h-45);}
+  brand(ctx,w,h);
+}
+function reiseDownload(fmt){
+  const isStory=fmt==='story';
+  if(!isStory){downloadCanvas('Reiseapotheke');return;}
+  const ziel=document.getElementById('reiseZiel')?.value||'strand';
+  const liste=document.getElementById('reiseListe')?.value||REISE_LISTEN[ziel]||'';
+  const items=liste.split('\n').filter(Boolean);
+  const ICONS={strand:'🏖️',berge:'🏔️',tropen:'🌴',city:'🏙️'};
+  const NAMES={strand:'Strand & Sommer',berge:'Berge & Wandern',tropen:'Tropen & Fernreise',city:'Städtereise'};
+  const c=makeFullCanvas((ctx,w,h)=>{
+    darkBg(ctx,w,h);redHeader(ctx,w,180);
+    ctx.fillStyle='#fff';ctx.font='bold 56px sans-serif';ctx.textAlign='center';ctx.fillText(ICONS[ziel]+' REISEAPOTHEKE',w/2,110);
+    ctx.font='32px sans-serif';ctx.fillStyle='rgba(255,255,255,.55)';ctx.fillText(NAMES[ziel],w/2,155);
+    const maxItems=Math.min(items.length,12);const startY=200,rowH=(h-280)/maxItems;
+    items.slice(0,maxItems).forEach((item,i)=>{
+      const y=startY+i*rowH;
+      if(i%2===0){ctx.fillStyle='rgba(255,255,255,.04)';ctx.fillRect(30,y,w-60,rowH-4);}
+      ctx.fillStyle='#C0392B';ctx.font='bold 28px sans-serif';ctx.textAlign='left';ctx.fillText('✓',55,y+rowH*0.65);
+      ctx.fillStyle='#fff';ctx.font='32px sans-serif';ctx.fillText(item,100,y+rowH*0.65);
+    });
+    brand(ctx,w,h,28);
+  },1080,1920);
+  const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='Reiseapotheke-Story.png';a.click();
+}
+
+// ── ATEMWEGS-LAGE ──
+const ATEM_LEVELS=['Keine','Gering','Moderat','Hoch','Sehr hoch'];
+const ATEM_COLORS=['#4CAF50','#8BC34A','#FFC107','#FF5722','#C0392B'];
+function atemPreview(){
+  const influ=document.getElementById('aInflu')?.value||'Gering';
+  const covid=document.getElementById('aCovid')?.value||'Gering';
+  const rsv=document.getElementById('aRSV')?.value||'Keine';
+  const tend=document.getElementById('aTendenz')?.value||'→ Stabil';
+  const empf=document.getElementById('aEmpfehlung')?.value||'Hände waschen, Lüften, Vitamin C';
+  const ctx=ctx2d(1080,1080),w=1080,h=1080;
+  darkBg(ctx,w,h);redHeader(ctx,w,135);
+  ctx.fillStyle='#fff';ctx.font='bold 44px sans-serif';ctx.textAlign='center';ctx.fillText('🦠 ATEMWEGS-LAGE',w/2,80);
+  ctx.font='24px sans-serif';ctx.fillStyle='rgba(255,255,255,.5)';ctx.fillText('Wochenbericht · Region Bingen',w/2,118);
+  const rows=[{label:'Influenza',val:influ},{label:'COVID-19',val:covid},{label:'RSV',val:rsv}];
+  rows.forEach((r,i)=>{
+    const y=170+i*220,idx=ATEM_LEVELS.indexOf(r.val),pct=idx/4;
+    ctx.fillStyle='rgba(255,255,255,.85)';ctx.font='bold 30px sans-serif';ctx.textAlign='left';ctx.fillText(r.label,50,y+38);
+    ctx.fillStyle='rgba(255,255,255,.1)';ctx.fillRect(50,y+55,w-100,30);
+    ctx.fillStyle=ATEM_COLORS[Math.max(0,idx)];ctx.fillRect(50,y+55,(w-100)*pct,30);
+    ctx.fillStyle=ATEM_COLORS[Math.max(0,idx)];ctx.font='bold 24px sans-serif';ctx.textAlign='right';ctx.fillText(r.val,w-50,y+77);
+  });
+  ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(50,840,w-100,2);
+  ctx.fillStyle='#C0392B';ctx.font='bold 26px sans-serif';ctx.textAlign='left';ctx.fillText('Tendenz: '+tend,50,885);
+  ctx.fillStyle='rgba(255,255,255,.7)';ctx.font='24px sans-serif';
+  wrapText(ctx,'Empfehlung: '+empf,50,930,w-100,36);
+  brand(ctx,w,h);
+}
+function atemDownload(fmt){
+  if(fmt==='beitrag'){downloadCanvas('Atemwegs-Lage');return;}
+  const influ=document.getElementById('aInflu')?.value||'Gering';
+  const covid=document.getElementById('aCovid')?.value||'Gering';
+  const rsv=document.getElementById('aRSV')?.value||'Keine';
+  const tend=document.getElementById('aTendenz')?.value||'→ Stabil';
+  const empf=document.getElementById('aEmpfehlung')?.value||'';
+  const c=makeFullCanvas((ctx,w,h)=>{
+    darkBg(ctx,w,h);redHeader(ctx,w,180);
+    ctx.fillStyle='#fff';ctx.font='bold 56px sans-serif';ctx.textAlign='center';ctx.fillText('🦠 ATEMWEGS-LAGE',w/2,110);
+    ctx.font='30px sans-serif';ctx.fillStyle='rgba(255,255,255,.5)';ctx.fillText('Wochenbericht · Region Bingen',w/2,158);
+    const rows=[{label:'Influenza',val:influ},{label:'COVID-19',val:covid},{label:'RSV',val:rsv}];
+    rows.forEach((r,i)=>{
+      const y=220+i*340,idx=ATEM_LEVELS.indexOf(r.val),pct=idx/4;
+      ctx.fillStyle='rgba(255,255,255,.85)';ctx.font='bold 40px sans-serif';ctx.textAlign='left';ctx.fillText(r.label,60,y+50);
+      ctx.fillStyle='rgba(255,255,255,.1)';ctx.fillRect(60,y+70,w-120,40);
+      ctx.fillStyle=ATEM_COLORS[Math.max(0,idx)];ctx.fillRect(60,y+70,(w-120)*pct,40);
+      ctx.fillStyle=ATEM_COLORS[Math.max(0,idx)];ctx.font='bold 30px sans-serif';ctx.textAlign='right';ctx.fillText(r.val,w-60,y+102);
+    });
+    ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(60,1340,w-120,2);
+    ctx.fillStyle='#C0392B';ctx.font='bold 34px sans-serif';ctx.textAlign='left';ctx.fillText('Tendenz: '+tend,60,1400);
+    ctx.fillStyle='rgba(255,255,255,.7)';ctx.font='30px sans-serif';
+    wrapText(ctx,'Empfehlung: '+empf,60,1460,w-120,44);
+    brand(ctx,w,h,28);
+  },1080,1920);
+  const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='Atemwegs-Story.png';a.click();
+}
+
+// ── FEIERTAG ──
+function feiertagPreview(){
+  const ft=document.getElementById('ftFeiertag')?.value||'Feiertag';
+  const dat=document.getElementById('ftDatum')?.value||'';
+  const apo=document.getElementById('ftApotheke')?.value||'–';
+  const zeit=document.getElementById('ftZeit')?.value||'';
+  const adr=document.getElementById('ftAdresse')?.value||'';
+  const dateStr=dat?new Date(dat).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}):'';
+  const ctx=ctx2d(1080,1080),w=1080,h=1080;
+  darkBg(ctx,w,h);redHeader(ctx,w,150);
+  ctx.fillStyle='#fff';ctx.font='bold 44px sans-serif';ctx.textAlign='center';ctx.fillText('🎉 FEIERTAGS-NOTDIENST',w/2,85);
+  ctx.font='26px sans-serif';ctx.fillStyle='rgba(255,255,255,.55)';ctx.fillText(ft+(dateStr?' · '+dateStr:''),w/2,128);
+  ctx.fillStyle='rgba(255,255,255,.12)';ctx.fillRect(80,380,w-160,2);
+  ctx.fillStyle='rgba(255,255,255,.45)';ctx.font='28px sans-serif';ctx.fillText('Notdienst-Apotheke:',w/2,430);
+  ctx.fillStyle='#fff';ctx.font='bold 52px sans-serif';ctx.fillText(apo,w/2,510);
+  ctx.fillStyle='rgba(255,255,255,.6)';ctx.font='28px sans-serif';ctx.fillText(zeit,w/2,570);ctx.fillText(adr,w/2,615);
+  ctx.fillStyle='rgba(255,255,255,.3)';ctx.font='22px sans-serif';ctx.fillText('Info: aponet.de · PLZ 55411',w/2,800);
+  brand(ctx,w,h);
+}
+function feiertagDownload(fmt){
+  if(fmt==='beitrag'){downloadCanvas('Feiertag-Notdienst');return;}
+  const ft=document.getElementById('ftFeiertag')?.value||'Feiertag';
+  const dat=document.getElementById('ftDatum')?.value||'';
+  const apo=document.getElementById('ftApotheke')?.value||'–';
+  const zeit=document.getElementById('ftZeit')?.value||'';
+  const adr=document.getElementById('ftAdresse')?.value||'';
+  const dateStr=dat?new Date(dat).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}):'';
+  const c=makeFullCanvas((ctx,w,h)=>{
+    darkBg(ctx,w,h);redHeader(ctx,w,180);
+    ctx.fillStyle='#fff';ctx.font='bold 56px sans-serif';ctx.textAlign='center';ctx.fillText('🎉 FEIERTAGS-NOTDIENST',w/2,110);
+    ctx.font='32px sans-serif';ctx.fillStyle='rgba(255,255,255,.55)';ctx.fillText(ft+(dateStr?' · '+dateStr:''),w/2,158);
+    ctx.fillStyle='rgba(255,255,255,.12)';ctx.fillRect(80,700,w-160,2);
+    ctx.fillStyle='rgba(255,255,255,.45)';ctx.font='34px sans-serif';ctx.fillText('Notdienst-Apotheke:',w/2,780);
+    ctx.fillStyle='#fff';ctx.font='bold 64px sans-serif';ctx.fillText(apo,w/2,880);
+    ctx.fillStyle='rgba(255,255,255,.6)';ctx.font='36px sans-serif';ctx.fillText(zeit,w/2,950);ctx.fillText(adr,w/2,1005);
+    brand(ctx,w,h,28);
+  },1080,1920);
+  const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='Feiertag-Story.png';a.click();
+}
+
+// ── CLAUDE API ──
+async function callClaude(key,prompt){
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'x-api-key':key,'anthropic-version':'2023-06-01','content-type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:1024,messages:[{role:'user',content:prompt}]})
+  });
+  if(!res.ok)throw new Error('API-Fehler '+res.status);
+  return (await res.json()).content[0].text;
+}
+const APO_CTX=`Du bist Social-Media-Assistent der Apotheke am Römer (Bingen, Saarlandstraße 121) & Nahe-Apotheke (Münster-Sarmsheim, Saarstraße 2). Inhaber: Niklas Schellenberger. Einzige Apotheke in Bingen mit Phytothek. 26 Mitarbeiter. Services: Botendienst, E-Rezept, WhatsApp 06721/995100, Abholautomat. Instagram: @apotheke_am_roemer.`;
+async function genInsta(){
+  const key=document.getElementById('apiKeyInput').value.trim();
+  if(!key){alert('API-Key eingeben.');return;}
+  const thema=document.getElementById('instaThema').value==='custom'?document.getElementById('instaCustom').value:document.getElementById('instaThema').value;
+  const out=document.getElementById('instaOutput');out.style.display='block';out.textContent='Generiere...';
+  try{const t=await callClaude(key,`${APO_CTX}\nInstagram-Caption: "${thema}". Ton: ${document.getElementById('instaTon').value}. ${document.getElementById('instaHashtags').value} Hashtags. Direkt die Caption.`);
+    out.textContent=t;document.getElementById('instaCopy').style.display='inline-flex';
+  }catch(e){out.textContent='Fehler: '+e.message;}
+}
+async function genFb(){
+  const key=document.getElementById('apiKeyInput').value.trim();
+  if(!key){alert('API-Key eingeben.');return;}
+  const out=document.getElementById('fbOutput');out.style.display='block';out.textContent='Generiere...';
+  try{const t=await callClaude(key,`${APO_CTX}\nFacebook-Post: "${document.getElementById('fbThema').value}". ${document.getElementById('fbInfo').value}. Mit CTA. Direkt der Post.`);
+    out.textContent=t;document.getElementById('fbCopy').style.display='inline-flex';
+  }catch(e){out.textContent='Fehler: '+e.message;}
+}
+async function genNl(){
+  const key=document.getElementById('apiKeyInput').value.trim();
+  if(!key){alert('API-Key eingeben.');return;}
+  const out=document.getElementById('nlOutput');out.style.display='block';out.textContent='Generiere...';
+  try{const t=await callClaude(key,`${APO_CTX}\nKunden-Newsletter: "${document.getElementById('nlThema').value}". Aktionen: ${document.getElementById('nlAktionen').value}. Mit Betreff, Anrede, CTA, Gruß.`);
+    out.textContent=t;document.getElementById('nlCopy').style.display='inline-flex';
+  }catch(e){out.textContent='Fehler: '+e.message;}
+}
+function copyText(id){navigator.clipboard.writeText(document.getElementById(id).textContent).then(()=>alert('Kopiert!'));}
+
+// ── INIT ──
+// ── AUTO-LOAD: DWD POLLENFLUG ──
+async function loadDWDPollen(btn){
+  if(btn){btn.textContent='⏳ Lade…';btn.disabled=true;}
+  const st=document.getElementById('pollenStatus');
+  try{
+    const r=await fetch('https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json');
+    const data=await r.json();
+    const region=data.content.find(c=>c.partregion_name&&(c.partregion_name.includes('Nahe')||c.partregion_name.includes('Rhein, Pfalz')))
+      ||data.content.find(c=>c.region_name&&c.region_name.includes('Rheinland'))
+      ||data.content[0];
+    if(!region)throw new Error('Region nicht gefunden');
+    const DWD_MAP={Birke:0,Graeser:1,Hasel:2,Erle:3,Beifuss:4,Roggen:5,Esche:7};
+    const mapVal=v=>{const n=parseFloat(v);if(n<=0)return 0;if(n<=1)return 1;if(n<=1.5)return 2;if(n<=2)return 3;return 4;};
+    const sliders=document.querySelectorAll('#pollenSliders input[type=range]');
+    const spans=document.querySelectorAll('#pollenSliders .pollen-row span');
+    Object.entries(DWD_MAP).forEach(([key,idx])=>{
+      if(region[key]!==undefined&&sliders[idx]){
+        const val=mapVal(region[key]);
+        sliders[idx].value=val;pollenVals[idx]=val;
+        if(spans[idx]){spans[idx].textContent=POLLEN_LEVELS[val];spans[idx].style.color=POLLEN_COLORS[val];}
+      }
+    });
+    pollenPreview();
+    const upd=data.last_update?` · Stand: ${data.last_update.slice(0,10)}`:'';
+    if(st){st.textContent=`✓ DWD-Daten geladen${upd} · ${region.partregion_name||region.region_name}`;st.style.color='#2e7d32';}
+  }catch(e){
+    if(st){st.textContent='⚠️ DWD-Fehler: '+e.message;st.style.color='#c0392b';}
+  }
+  if(btn){btn.textContent='🔄 DWD laden';btn.disabled=false;}
+}
+
+// ── AUTO-LOAD: RKI ATEMWEGS-LAGE ──
+async function loadRKIAtem(btn){
+  if(btn){btn.textContent='⏳ Lade…';btn.disabled=true;}
+  const st=document.getElementById('atemStatus');
+  try{
+    const r=await fetch('https://raw.githubusercontent.com/robert-koch-institut/ARE-Konsultationsinzidenz/main/Aktuell_Deutschland_ARE-Konsultationsinzidenz.csv',{signal:AbortSignal.timeout(8000)});
+    if(!r.ok)throw new Error('CSV nicht erreichbar ('+r.status+')');
+    const text=await r.text();
+    const lines=text.trim().split('\n').filter(Boolean);
+    const headers=lines[0].split(',').map(h=>h.trim().replace(/"/g,''));
+    const last=lines[lines.length-1].split(',').map(v=>v.trim().replace(/"/g,''));
+    const row={};headers.forEach((h,i)=>row[h]=last[i]);
+    const toLevel=v=>{const n=parseFloat(v);if(isNaN(n)||n<5)return 'Keine';if(n<15)return 'Gering';if(n<35)return 'Moderat';if(n<70)return 'Hoch';return 'Sehr hoch';};
+    const iliKey=headers.find(h=>h.includes('ILI')||h.includes('Influenza')||h.includes('influenza'));
+    const areKey=headers.find(h=>h.includes('ARE')||h.includes('are'));
+    const dateKey=headers.find(h=>h.toLowerCase().includes('datum')||h.toLowerCase()==='date'||h.toLowerCase().includes('kw'));
+    const fluLevel=iliKey?toLevel(row[iliKey]):(areKey?toLevel(row[areKey]):'Gering');
+    const areLevel=areKey?toLevel(row[areKey]):'Gering';
+    const el=document.getElementById('aInflu');if(el)el.value=fluLevel;
+    atemPreview();
+    const dateTxt=dateKey?` · ${row[dateKey]}`:'';
+    if(st){st.textContent=`✓ RKI-Daten geladen${dateTxt} · Influenza: ${fluLevel} · ARE: ${areLevel}`;st.style.color='#2e7d32';}
+  }catch(e){
+    if(st){st.innerHTML=`⚠️ RKI-Daten nicht geladen: ${e.message}. Bitte manuell aus dem <a href="https://www.rki.de/influenza" target="_blank" style="color:var(--red)">RKI Wochenbericht</a> entnehmen.`;st.style.color='#c0392b';}
+  }
+  if(btn){btn.textContent='🔄 RKI laden';btn.disabled=false;}
+}
+
+// ── AUTO-LOAD: FEIERTAGE RLP ──
+async function loadFeiertage(btn){
+  if(btn){btn.textContent='⏳ Lade…';btn.disabled=true;}
+  const st=document.getElementById('ftStatus');
+  try{
+    const year=new Date().getFullYear();
+    const r=await fetch(`https://feiertage-api.de/api/?jahr=${year}&nur_land=RP`);
+    if(!r.ok)throw new Error('API Fehler '+r.status);
+    const data=await r.json();
+    const today=new Date();today.setHours(0,0,0,0);
+    const upcoming=Object.entries(data)
+      .map(([name,obj])=>({name,date:new Date(obj.datum)}))
+      .filter(f=>f.date>=today)
+      .sort((a,b)=>a.date-b.date);
+    if(upcoming.length===0)throw new Error('Keine bevorstehenden Feiertage gefunden');
+    const next=upcoming[0];
+    const ftEl=document.getElementById('ftFeiertag');
+    const dtEl=document.getElementById('ftDatum');
+    if(ftEl)ftEl.value=next.name;
+    if(dtEl)dtEl.value=next.date.toISOString().slice(0,10);
+    feiertagPreview();
+    if(st){st.textContent=`✓ Nächster Feiertag: ${next.name} (${next.date.toLocaleDateString('de-DE')})`;st.style.color='#2e7d32';}
+  }catch(e){
+    if(st){st.textContent='⚠️ '+e.message;st.style.color='#c0392b';}
+  }
+  if(btn){btn.textContent='📅 Nächsten Feiertag laden';btn.disabled=false;}
+}
+
+// ── AUTO-SELECT: GESUNDHEITSTAG ──
+function autoSelectGesundheitstag(){
+  const today=new Date();
+  const mm=String(today.getMonth()+1).padStart(2,'0');
+  const dd=String(today.getDate()).padStart(2,'0');
+  const todayNum=parseInt(String(today.getFullYear())+mm+dd);
+  let best=null,bestDiff=Infinity;
+  GT_DATA.forEach((g,i)=>{
+    const[d,m]=g.d.split('.').map(Number);
+    const gNum=parseInt(String(today.getFullYear())+String(m).padStart(2,'0')+String(d).padStart(2,'0'));
+    const diff=gNum>=todayNum?gNum-todayNum:99999+(gNum+10000-todayNum);
+    if(diff<bestDiff){bestDiff=diff;best=i;}
+  });
+  if(best!==null){
+    setTimeout(()=>{const items=document.querySelectorAll('.gt-item');if(items[best])items[best].click();},200);
+  }
+}
+
+// ── AUTO-SELECT: SAISONALER TIPP ──
+function autoSelectTippKat(){
+  const m=new Date().getMonth()+1;
+  const map={1:'Winter & Erkältung',2:'Winter & Erkältung',3:'Allergie & Pollen',
+    4:'Allergie & Pollen',5:'Allergie & Pollen',6:'Sommer & Hitze',
+    7:'Sommer & Hitze',8:'Sommer & Hitze',9:'Vitamine & Nahrungsergänzung',
+    10:'Vitamine & Nahrungsergänzung',11:'Winter & Erkältung',12:'Winter & Erkältung'};
+  const sel=document.getElementById('tippKat');
+  if(sel&&map[m])sel.value=map[m];
+  tippRandom();
+}
+
+function initAdmin(){
+  // API-Key aus localStorage laden und in beide Felder eintragen
+  const savedKey=localStorage.getItem('apoApiKey')||'';
+  if(savedKey){
+    document.getElementById('apiKeyInput').value=savedKey;
+    const s=document.getElementById('apiKeyInputSocial');if(s)s.value=savedKey;
+  }
+  document.getElementById('apiKeyInput').addEventListener('change',function(){localStorage.setItem('apoApiKey',this.value);});
+
+  initNdDays();
+  initPollen();
+  initGesundheitstage();
+  autoSelectGesundheitstag();
+  autoSelectTippKat();
+  document.getElementById('reiseListe').value=REISE_LISTEN['strand'];
+  reisePreview();
+  feiertagPreview();
+
+  // Auto-load alle externen Daten
+  loadWetter();
+  loadDWDPollen(null);
+  loadRKIAtem(null);
+  loadFeiertage(null);
+  ndAktualisieren(null);
+
+  // Paste im Notdienst-Feld → automatisch verarbeiten (kein API-Key nötig)
+  const ndTa=document.getElementById('ndPasteText');
+  if(ndTa){ndTa.addEventListener('paste',()=>{setTimeout(ndAiImport,600);});}
+
+  const today=new Date().getDay();
+  const tips=['','Notdienst-Plan posten!','Pollenflug aktualisieren','Wetter-Tipp teilen','Gesundheitstag prüfen','Apothekentipp posten','Reiseapotheke-Tipp',''];
+  if(tips[today])document.getElementById('weatherBadge').textContent+=' · Tipp: '+tips[today];
+}
+</script>
+</body>
+</html>
